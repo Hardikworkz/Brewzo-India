@@ -1,0 +1,262 @@
+.modal-drop-lock {
+  overflow: hidden;
+}
+
+.modal-drop-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  padding: 24px;
+}
+
+.modal-drop-backdrop--blur {
+  background: rgba(7, 6, 5, 0.44);
+  backdrop-filter: blur(7px);
+}
+
+.modal-drop-backdrop--overlay {
+  background: rgba(0, 0, 0, 0.56);
+}
+
+.modal-drop-backdrop--none {
+  background: transparent;
+}
+
+.modal-drop-panel {
+  width: min(760px, 94vw);
+  max-height: calc(100vh - 48px);
+  overflow: auto;
+  background: #fff9f2;
+  color: #3f2a22;
+  border: 1px solid #ddcdbb;
+  border-radius: 18px;
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.34),
+    0 8px 24px rgba(0, 0, 0, 0.12);
+  transform-origin: center;
+}
+
+.modal-drop-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 22px 24px 16px;
+}
+
+.modal-drop-header--stacked {
+  align-items: flex-start;
+}
+
+.modal-drop-header--border {
+  border-bottom: 1px solid #e9dccd;
+}
+
+.modal-drop-title {
+  margin: 0;
+  font-family: "Ying W01 Semi Bold", Georgia, serif;
+  font-size: clamp(1.25rem, 1.8vw, 1.75rem);
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+}
+
+.modal-drop-subtitle {
+  margin: 6px 0 0;
+  font-family: "Inclusive Sans", Arial, sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.78;
+}
+
+.modal-drop-close-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.modal-drop-esc {
+  border: 1px solid #dcc9b7;
+  border-radius: 6px;
+  background: #f7efe4;
+  font-family: "Inclusive Sans", Arial, sans-serif;
+  font-size: 0.68rem;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  padding: 6px 7px;
+  color: #7a6255;
+}
+
+.modal-drop-close-btn {
+  border: 0;
+  background: transparent;
+  color: #5d4334;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 160ms ease, color 160ms ease;
+}
+
+.modal-drop-close-btn:hover {
+  background: rgba(93, 67, 52, 0.1);
+  color: #351f15;
+}
+
+.modal-drop-body {
+  padding: 24px;
+}
+
+.modal-drop-body--top-gap {
+  padding-top: 44px;
+}
+
+.modal-drop-body--no-padding {
+  padding: 0;
+}
+
+.modal-card-media {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #eadfce;
+  margin-bottom: 16px;
+}
+
+.modal-card-media img {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  display: block;
+}
+
+.modal-card-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  align-items: stretch;
+}
+
+.modal-card-media--split {
+  margin-bottom: 0;
+  min-height: 236px;
+  height: min(400px, 60vh);
+  max-height: 400px;
+}
+
+.modal-card-media--split img {
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  object-fit: cover;
+}
+
+.modal-card-details {
+  display: flex;
+  flex-direction: column;
+  border: none;
+  border-radius: 12px;
+  background: transparent;
+  padding: 14px;
+}
+
+.modal-card-date {
+  margin: 0 0 8px;
+  color: #8b6d5c;
+  font-family: "Inclusive Sans", Arial, sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.modal-card-copy {
+  margin: 0;
+  font-family: "Inclusive Sans", Arial, sans-serif;
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: #5a4439;
+}
+
+.modal-card-actions {
+  margin-top: auto;
+  padding-top: 14px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.modal-card-btn {
+  border: 0;
+  border-radius: 8px;
+  background: #c44d24;
+  color: #fff;
+  font-family: "Inclusive Sans", Arial, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: transform 160ms ease, filter 160ms ease;
+}
+
+.modal-card-btn:hover {
+  filter: brightness(0.92);
+  transform: translateY(-1px);
+}
+
+.modal-inline-carousel {
+  margin-top: 16px;
+  border-top: 1px solid #ecdccb;
+  padding-top: 14px;
+  overflow: hidden;
+}
+
+.modal-carousel-item {
+  width: 120px;
+  height: 84px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #e8d8c8;
+  background: #efe3d3;
+}
+
+.modal-carousel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+@media (max-width: 860px) {
+  .modal-card-top {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .modal-drop-backdrop {
+    padding: 12px;
+  }
+
+  .modal-drop-header {
+    padding: 18px 16px 14px;
+  }
+
+  .modal-drop-body {
+    padding: 16px;
+  }
+
+  .modal-card-media--split {
+    min-height: 190px;
+  }
+
+  .modal-carousel-item {
+    width: 100px;
+    height: 70px;
+  }
+}

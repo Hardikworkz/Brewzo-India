@@ -1,34 +1,98 @@
-import { NavLink } from 'react-router-dom';
+import React, { useEffect, useRef, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './DemoHeader.css';
+import logo from '../../assets/logo.png';
 
-const navItems = [
-  { to: '/', label: 'Home', end: true },
-  { to: '/events', label: 'Events' },
-];
+const ChevronIcon = () => (
+  <svg className="chevron" viewBox="0 0 24 24" width="12" height="12">
+    <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z" />
+  </svg>
+);
 
-export default function DemoHeader() {
+const DemoHeader = () => {
+  const [isVisible, setIsVisible] = useState(true);
+  const lastScrollYRef = useRef(0);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY <= 8) {
+        setIsVisible(true);
+      } else if (currentScrollY > lastScrollYRef.current) {
+        setIsVisible(false);
+      } else {
+        setIsVisible(true);
+      }
+
+      lastScrollYRef.current = currentScrollY;
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToSection = (sectionId) => {
+    const sectionElement = document.getElementById(sectionId);
+
+    if (!sectionElement) {
+      return;
+    }
+
+    const headerOffset = 76;
+    const sectionTop = sectionElement.getBoundingClientRect().top + window.scrollY - headerOffset;
+    window.scrollTo({ top: sectionTop, behavior: 'smooth' });
+    window.history.replaceState(null, '', `/#${sectionId}`);
+  };
+
+  const handleHomeClick = (event) => {
+    event.preventDefault();
+
+    if (location.pathname === '/') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.history.replaceState(null, '', '/');
+      return;
+    }
+
+    navigate('/');
+  };
+
+  const handleSectionClick = (event, sectionId) => {
+    event.preventDefault();
+
+    if (location.pathname !== '/') {
+      navigate(`/#${sectionId}`);
+      return;
+    }
+
+    scrollToSection(sectionId);
+  };
+
   return (
-    <header className="demo-header">
-      <div className="demo-header__inner">
-        <NavLink to="/" className="demo-header__brand">
-          Brewzo Demo
-        </NavLink>
+    <nav className={`navbar ${isVisible ? 'navbar-visible' : 'navbar-hidden'}`}>
+      <section className="section1">
+        <div className="nav-section brand-section">
+          <a href="/" onClick={handleHomeClick}>
+            <img src={logo} alt="" />
+          </a>
+        </div>
 
-        <nav className="demo-header__nav" aria-label="Primary">
-          {navItems.map((item) => (
-            <NavLink
-              key={item.to}
-              to={item.to}
-              end={item.end}
-              className={({ isActive }) =>
-                `demo-header__link${isActive ? ' demo-header__link-active' : ''}`
-              }
-            >
-              {item.label}
-            </NavLink>
-          ))}
-        </nav>
+        <div className="nav-section links-section">
+          <a href="/#about" onClick={(event) => handleSectionClick(event, 'about')}>ABOUT</a>
+          <a href="/#beans" onClick={(event) => handleSectionClick(event, 'beans')}>BEANS</a>
+          <a href="/#bakery" onClick={(event) => handleSectionClick(event, 'bakery')}>BAKERY</a>
+          <a href="/#review" onClick={(event) => handleSectionClick(event, 'review')}>REVIEW</a>
+          <Link to="/events">EVENTS</Link>
+        </div>
+      </section>
+
+      <div className="nav-section actions-section">
+        <Link to="/contact">CONTACT US</Link>
       </div>
-    </header>
+    </nav>
   );
-}
+};
+
+export default DemoHeader;

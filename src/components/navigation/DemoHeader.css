@@ -1,71 +1,178 @@
-@font-face {
-  font-family: 'inclusive';
-  src: url('../../assets/inclusivee.woff2') format('woff2');
-  font-display: swap;
-}
+@import url('https://fonts.googleapis.com/css2?family=Inclusive+Sans&display=swap');
 
-.demo-header {
-  background: rgba(252, 250, 245, 0.94);
-  border-bottom: 1px solid rgba(74, 59, 50, 0.12);
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  height: 68px;
+  background-color: #fcf6f0;
+  border-bottom: 1px solid #e3d3c4;
+  font-family: 'Inclusive Sans';
+  color: #513627;
+  max-width: 100%;
+  overflow-x: hidden;
+  padding-inline: 30px;
   position: sticky;
   top: 0;
-  z-index: 50;
-  backdrop-filter: blur(14px);
+  z-index: 80;
+  transition: transform 0.28s ease;
+  box-sizing: border-box;
 }
 
-.demo-header__inner {
-  align-items: center;
+.navbar-visible {
+  transform: translateY(0);
+}
+
+.navbar-hidden {
+  transform: translateY(-100%);
+}
+
+.section1 {
   display: flex;
   gap: 20px;
-  justify-content: space-between;
-  margin: 0 auto;
-  max-width: 1440px;
-  padding: 16px clamp(16px, 4vw, 40px);
+  min-width: 0;
 }
 
-.demo-header__brand {
-  color: #4a2e1b;
-  font-family: 'Ying W01 Semi Bold', serif;
-  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
-  letter-spacing: -0.03em;
-  line-height: 1;
+.navbar a {
   text-decoration: none;
-}
-
-.demo-header__nav {
-  align-items: center;
+  color: inherit;
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+  align-items: center;
+  gap: 4px;
+  transition: opacity 0.2s ease;
 }
 
-.demo-header__link {
-  border: 1px solid rgba(74, 59, 50, 0.14);
-  border-radius: 999px;
-  color: #5f4638;
-  font-family: 'inclusive', sans-serif;
-  font-size: 0.88rem;
-  letter-spacing: 0.12em;
-  padding: 10px 14px;
-  text-decoration: none;
-  text-transform: uppercase;
-  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+.navbar a:hover {
+  opacity: 0.7;
 }
 
-.demo-header__link:hover,
-.demo-header__link-active {
-  background: #c96a15;
-  border-color: #c96a15;
-  color: #fffaf2;
+.nav-section {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  border-right: 1px solid #e3d3c4;
+  box-sizing: border-box;
+  min-width: 0;
 }
 
-@media (max-width: 640px) {
-  .demo-header__inner {
-    align-items: flex-start;
-    flex-direction: column;
+.nav-section:last-child {
+  border-right: none;
+}
+
+.brand-section {
+  width: 231px;
+  flex-shrink: 0;
+  justify-content: center;
+}
+
+.brand-section img {
+  width: 210px;
+  
+}
+
+.brand-logo {
+  font-family: sans-serif;
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: -1px;
+  -webkit-text-stroke: 1.5px #513627;
+  color: #fcf6f0;
+}
+
+.links-section {
+  width: 578px;
+  flex-shrink: 0;
+  justify-content: start;
+  gap: 28px;
+  padding-left: 10px;
+  font-size: 14px;
+  font-weight: 450;
+  letter-spacing: 0.2px;
+}
+
+.actions-section {
+  width: auto;
+  padding-inline: 15px;
+  flex-shrink: 0;
+  justify-content: right;
+  gap: 24px;
+  font-size: 14px;
+  border-left: 1px solid #e3d3c4;
+  font-weight: 450;
+  letter-spacing: 0.2px;
+}
+
+.chevron {
+  fill: currentColor;
+  margin-top: 2px;
+}
+
+@media (max-width: 1100px) {
+  .navbar {
+    padding-inline: 14px;
   }
 
-  .demo-header__nav {
+  .brand-section {
+    width: 190px;
+  }
+
+  .brand-section img {
+    width: 172px;
+  }
+
+  .links-section {
+    width: auto;
+    gap: 18px;
+    font-size: 13px;
+    padding-left: 6px;
+  }
+
+  .actions-section {
+    font-size: 13px;
+    padding-inline: 10px;
+  }
+}
+
+@media (max-width: 760px) {
+  .navbar {
+    height: auto;
+    padding: 8px 10px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .section1 {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .nav-section {
+    border-right: none;
+    border-left: none;
+    border-top: none;
+    border-bottom: 1px solid #e3d3c4;
+    min-height: 44px;
+  }
+
+  .brand-section {
+    width: 100%;
+    justify-content: flex-start;
+    padding-inline: 6px;
+  }
+
+  .links-section {
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 12px 16px;
+    padding: 0 6px 8px;
+  }
+
+  .actions-section {
+    width: 100%;
+    border-left: none;
+    justify-content: flex-start;
+    padding: 0 6px 6px;
   }
 }

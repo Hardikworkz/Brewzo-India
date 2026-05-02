@@ -1,124 +1,217 @@
-import React from 'react';
+import React, { useRef, useEffect, useState } from 'react';
+import ModalDrop from '../ui/modal-drop';
+import LogoLoop from '../footer/LogoLoop';
 import './EventsBoard.css';
-import img from '../../assets/upcoming_sticker.png'
-import beer from '../../assets/beer.png'
-import whats from '../../assets/whats.png'
+import event1 from '../../assets/event1.png';
+import event2 from '../../assets/event2.png';
+import doodle from '../../assets/doodle_events.png';
+
 const eventsData = [
   {
     id: 1,
-    date: "04. 03. 2026",
-    title: "Producer Highlight: Burundi Coffee 🌱",
-    image: "https://images.unsplash.com/photo-1559525839-b184a4d698c7?auto=format&fit=crop&q=80&w=1200",
-    description: "Sourcing coffee in Burundi is as much about relationships and resilience as it is about flavor. When Ben and Kristy Carlson arrived in 2011, they witnessed significant challenges facing smallholder farmers— ranging from inconsistent quality and limited infrastructure to deep-rooted systemic inequalities that hindered long-term success. In response, they founded Long Miles Coffee, building a model centered on meaningful connections between farmers, improved infrastructure, and transparent partnerships with buyers.",
-    theme: "caramel",
-    btnLabel: "READ MORE"
+    date: 'Brewzo Events',
+    title: 'Run and Rave With',
+    subtitle: 'Gen Run',
+    description: 'A high-energy community run and rave-style coffee social hosted with Gen Run.',
+    image: event1,
   },
   {
     id: 2,
-    date: "03. 03. 2026",
-    title: "Producer Highlight 🌱",
-    image: "https://images.unsplash.com/photo-1555507015-0624083c5093?auto=format&fit=crop&q=80&w=800",
-    description: "In the hills of Las Flores, Santa Barbara, Honduras, 46 year old producer Isaias Fernandez tends to his 10 hectare farm, Finca el Ocotillo. You can find his farm at an astounding 1,720 masl. Here, the ideal growing conditions and generations of experience come together to produce exceptional specialty coffee that we have been sourcing consistently since 2015!",
-    theme: "amber",
-    btnLabel: "READ MORE"
+    date: 'Brewzo Events',
+    title: 'Candle Making Workshop',
+    subtitle: 'Lavana Candles',
+    description: 'A hands-on candle making experience in collaboration with Lavana Candles.',
+    image: event2,
   },
   {
     id: 3,
-    date: "12. 11. 2025",
-    title: "Spotify Fall and Winter Playlist 👾",
-    image: "https://images.unsplash.com/photo-1607958996333-41aef7caefaa?auto=format&fit=crop&q=80&w=800",
-    description: "Featuring tracks from our current vinyl selection!",
-    theme: "terracotta",
-    btnLabel: "LISTEN NOW"
+    date: 'Brewzo Events',
+    title: 'Open Mic',
+    subtitle: 'Parkhi',
+    description: 'An expressive open mic evening in partnership with Parkhi.',
+    image: event1,
   },
   {
     id: 4,
-    date: "11. 21. 2025",
-    title: "Follow us on Spotify 🎵",
-    image: "https://images.unsplash.com/photo-1569864358642-9d1684040f43?auto=format&fit=crop&q=80&w=800",
-    description: "You can now follow us on Spotify! We'll never stop loving to play vinyl in the shops but we're excited to create some playlists inspired by our baristas...",
-    theme: "slate",
-    btnLabel: "LISTEN NOW"
-  }
+    date: 'Brewzo Events',
+    title: 'Brewing Sessions',
+    subtitle: 'Coffee Craft',
+    description: 'Interactive sessions focused on brewing techniques, flavor notes, and coffee craft.',
+    image: event2,
+  },
+  {
+    id: 5,
+    date: 'Brewzo Events',
+    title: 'Jamming',
+    subtitle: 'Live Community',
+    description: 'An open jamming experience with live music, conversations, and great brews.',
+    image: event1,
+  },
+  {
+    id: 6,
+    date: 'Brewzo Events',
+    title: 'Resin Art Workshop',
+    subtitle: 'Creative Studio',
+    description: 'A guided resin art workshop built for creators of all levels.',
+    image: event2,
+  },
 ];
 
-function UpcomingSticker() {
+const eventsCarouselImages = [
+  { src: event1, alt: 'Event moment' },
+  { src: event2, alt: 'Live performance' },
+  { src: 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=900&q=80', alt: 'Creative session' },
+  { src: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=900&q=80', alt: 'Event crowd' },
+  { src: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=900&q=80', alt: 'Live stage lights' },
+  { src: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=900&q=80', alt: 'Audience vibes' },
+  { src: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=900&q=80', alt: 'Night event' },
+];
+
+const EventBoard = () => {
+  const sliderRef = useRef(null);
+  const modalCarouselRef = useRef(null);
+  const [activeCard, setActiveCard] = useState(null);
+
+  useEffect(() => {
+    const slider = sliderRef.current;
+    if (!slider) return;
+
+    const handleWheel = (evt) => {
+      evt.preventDefault();
+      const delta =
+        Math.abs(evt.deltaX) > Math.abs(evt.deltaY) ? evt.deltaX : evt.deltaY;
+
+      if (delta === 0) {
+        return;
+      }
+
+      slider.scrollBy({
+        left: delta < 0 ? -300 : 300,
+        behavior: 'smooth'
+      });
+    };
+
+    slider.addEventListener('wheel', handleWheel, { passive: false });
+
+    return () => {
+      slider.removeEventListener('wheel', handleWheel);
+    };
+  }, []);
+
+  useEffect(() => {
+    const modalCarousel = modalCarouselRef.current;
+    if (!modalCarousel) return;
+
+    const handleModalWheel = (evt) => {
+      evt.preventDefault();
+      const delta =
+        Math.abs(evt.deltaX) > Math.abs(evt.deltaY) ? evt.deltaX : evt.deltaY;
+
+      if (delta === 0) {
+        return;
+      }
+
+      modalCarousel.scrollBy({
+        left: delta < 0 ? -220 : 220,
+        behavior: 'smooth'
+      });
+    };
+
+    modalCarousel.addEventListener('wheel', handleModalWheel, { passive: false });
+
+    return () => {
+      modalCarousel.removeEventListener('wheel', handleModalWheel);
+    };
+  }, [activeCard]);
+
+  const closeModal = () => {
+    setActiveCard(null);
+  };
+
   return (
-    <div className="upcoming-sticker" aria-hidden="true">
-       <img src={img} alt="" />
-    </div>
-  );
-}
-
-export default function EventsBoard() {
-  return (
-    <div className="events-container">
-      <header className="events-header">
-        <div className="events-header-content">
-          <h1 className="title-main">Community Board</h1>
-          <p className="subtitle">Stay in the know and keep tabs on what's happening in our world!</p>
+    <section className="event-board-hero">
+      <div className="content-panel">
+        <div className="intro-header">
+          <div className="intro-desc">
+            <span className="badge">Events</span>
+            <h2>When Coffee Meets Character</h2>
+            <p>
+              Your all-access pass to the city&apos;s best happenings. Keep your
+              calendar fresh and discover exclusive gatherings, live music, and
+              creative workshops.
+            </p>
+          </div>
+          <div className="intro-img">
+            <img src={doodle} alt="" />
+          </div>
         </div>
-        <div className="events-header-img" aria-hidden="true">
-          <img className="events-header-bear" src={beer} alt="" />
-          <img className="events-header-bubble" src={whats} alt="" />
-        </div>
-      </header>
 
-      {/* Vertical List of Events */}
-      <div className="events-list">
-        {eventsData.map((item, index) => {
-          const isFeatured = index === 0;
-
-          return (
-            <div key={item.id} className={`event-card ${isFeatured ? 'featured' : 'standard'}`} data-theme={item.theme}>
-              
-              {isFeatured ? (
-                // Highlighted Large Featured Event Layout
-                <div className="featured-content">
-                  <div className="event-meta">
-                    <span className="card-date">{item.date}</span>
-                    <h2 className="card-title featured-title">{item.title}</h2>
-                  </div>
-                  
-                  <div className="featured-split">
-                    <div className="featured-image-container">
-                      <div className="events-image-box">
-                        <img src={item.image} alt={item.title} />
-                      </div>
-                      <UpcomingSticker />
-                    </div>
-                    <div className="featured-info">
-                      <span className="card-desc">{item.description}</span>
-                      <div className="card-actions">
-                        <h3 className="action-tag">{item.btnLabel}</h3>
-                        
-                      </div>
-                    </div>
-                  </div>
+        <div className="card-slider" ref={sliderRef}>
+          {eventsData.map((event) => (
+            <div className="event-card" key={event.id}>
+              <div className="card-image-wrapper">
+                <img src={event.image} alt={event.title} />
+              </div>
+              <div className="card-content">
+                <div className="card-header">
+                  <h3>{event.title}</h3>
                 </div>
-              ) : (
-                // Stacked Standard Event Layout
-                <div className="standard-layout">
-                  <div className="standard-image-container">
-                    <div className="events-image-box">
-                      <img src={item.image} alt={item.title} />
-                    </div>
-                  </div>
-                  <div className="standard-info">
-                    <span className="card-date">{item.date}</span>
-                    <h3 className="card-title">{item.title}</h3>
-                    <p className="card-desc">{item.description}</p>
-                    <div className="card-actions">
-                      <h3 className="action-tag">{item.btnLabel}</h3>
-                    </div>
-                  </div>
-                </div>
-              )}
-
+                <span className="subtitle">{event.subtitle}</span>
+                <p>{event.description}</p>
+                <button
+                  className="btn-quick-view"
+                  type="button"
+                  onClick={() => setActiveCard(event)}
+                >
+                  Quick View
+                </button>
+              </div>
             </div>
-          );
-        })}
+          ))}
+        </div>
       </div>
-    </div>
+
+      <ModalDrop
+        isOpen={Boolean(activeCard)}
+        onClose={closeModal}
+        title={activeCard?.title}
+        subtitle={activeCard?.subtitle}
+        type="blur"
+        animationType="scale"
+      >
+        {activeCard && (
+          <>
+            <div className="modal-card-top">
+              <div className="modal-card-media modal-card-media--split">
+                <img src={activeCard.image} alt={activeCard.title} />
+              </div>
+              <div className="modal-card-details">
+                <p className="modal-card-date">{activeCard.date}</p>
+                <p className="modal-card-copy">{activeCard.description}</p>
+              </div>
+            </div>
+
+            <div className="modal-inline-carousel" ref={modalCarouselRef}>
+              <LogoLoop
+                logos={eventsCarouselImages}
+                speed={42}
+                gap={12}
+                logoHeight={84}
+                fadeOut
+                fadeOutColor="#fff9f2"
+                ariaLabel="Event gallery images"
+                renderItem={(item, key) => (
+                  <div className="modal-carousel-item" key={key}>
+                    <img src={item.src} alt={item.alt} />
+                  </div>
+                )}
+              />
+            </div>
+          </>
+        )}
+      </ModalDrop>
+    </section>
   );
-}
+};
+
+export default EventBoard;

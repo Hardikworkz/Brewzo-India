@@ -1,3 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&display=swap');
+
+@font-face {
+  font-family: 'Brewzo Serif';
+  src: url('./assets/brewzoo/fonts/main-font.ttf') format('truetype');
+  font-display: swap;
+}
+
+:root {
+  --brewzo-coffee: #4b2e2b;
+  --brewzo-coffee-deep: #2a1917;
+  --brewzo-burnt-orange: #c84a2f;
+  --brewzo-cream: #f5e6d3;
+  --brewzo-cream-soft: #ffeed9;
+  --brewzo-heading-font: 'Brewzo Serif', Georgia, serif;
+  --brewzo-body-font: 'Montserrat', Arial, sans-serif;
+}
+
+body.brewzo-modal-open {
+  overflow: hidden;
+}
+
 .app-shell {
   background: #fcfaf5;
   display: flex;

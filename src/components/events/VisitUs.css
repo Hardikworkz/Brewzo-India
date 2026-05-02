@@ -4,7 +4,7 @@
 
 .hero-container {
   height: clamp(420px, 72vw, 647px);
-  margin-bottom: clamp(56px, 8vw, 100px);
+  margin-bottom: 40px;
   min-height: clamp(420px, 72vw, 647px);
   overflow: hidden;
   position: relative;

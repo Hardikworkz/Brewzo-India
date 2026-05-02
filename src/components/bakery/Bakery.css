@@ -7,54 +7,49 @@
   font-display: swap;
 }
 
-
-
 .brewzo-container {
   background-color: #fcfaf5;
   color: #4a3b32;
   min-height: 100vh;
   padding: 40px 0;
-  
 }
 
-/* Header Section */
 .board-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-   
   width: 100%;
-  margin-right: 50px;
   margin-bottom: 20px;
   line-height: 35px;
+  gap: 20px;
+  padding: 0 clamp(16px, 4vw, 40px);
+  box-sizing: border-box;
 }
 
 .header-text .title-accent {
   display: block;
   font-family: 'Ying W01 Semi Bold';
-  font-size: 44.8px;
+  font-size: clamp(2.2rem, 4.6vw, 44.8px);
   font-weight: 700;
-  width: 318px;
-  height: 50px;
-  color: #c96a15; 
-  margin-left: 40px;
+  width: auto;
+  color: #c96a15;
   line-height: 1;
 }
 
 .header-text .title-main {
   font-family: 'Ying W01 Semi Bold';
-  font-size: 44.8px;
+  font-size: clamp(2.2rem, 4.6vw, 44.8px);
   font-weight: 700;
   margin: 0;
-  margin-left: 40px;
-  width: 512px;
+  width: auto;
+  text-wrap: nowrap;
+  max-width: 12ch;
 }
 
 .nav-arrows {
   display: flex;
   gap: 8px;
   margin-bottom: 15px;
-  margin-right: 40px;
 }
 
 .nav-arrows button {
@@ -73,12 +68,12 @@
   opacity: 0.7;
 }
 
-/* Grid & Card Dimensions */
 .board-scroll-grid {
   display: flex;
   overflow-x: auto;
   scrollbar-width: none;
   border: 1px solid #e5dfd3;
+  padding-right: 1px;
 }
 
 .board-scroll-grid::-webkit-scrollbar {
@@ -86,27 +81,25 @@
 }
 
 .board-card {
-  /* Exact Dimensions from Image */
- 
-  width: 360px;
-  height: 615px;
-  
-  padding: 24px 30px 40px 30px;
+  flex: 0 0 min(360px, calc(100vw - 40px));
+  min-height: 615px;
+  padding: 24px 30px 40px;
   border-right: 1px solid #e5dfd3;
   transition: all 0.3s ease;
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  box-sizing: border-box; /* Ensures padding is included in the 288x543 */
+  box-sizing: border-box;
 }
 
 .card-image-box {
-  width: 288px;
-  /* Calculated to allow the text box (card-info) to be roughly 181px */
-  height: 345px; 
+  width: 100%;
+  max-width: 288px;
+  aspect-ratio: 288 / 345;
   border-radius: 9px;
   overflow: hidden;
   margin-bottom: 25px;
+  margin-inline: auto;
 }
 
 .card-image-box img {
@@ -115,19 +108,17 @@
   object-fit: cover;
 }
 
-/* Content Area - Roughly 181px height */
 .card-info {
   display: flex;
   flex-direction: column;
-  height: 181px;
-    
+  min-height: 181px;
+  flex: 1 1 auto;
 }
 
 .card-date {
-  font-family:  'inclusive';
+  font-family: 'inclusive';
   font-size: 12px;
   opacity: 0.8;
-  
 }
 
 .card-title {
@@ -139,11 +130,10 @@
 }
 
 .card-desc {
-  font-family: "Inclusive Sans";
+  font-family: 'Inclusive Sans';
   font-size: 13px;
   line-height: 1.4;
   opacity: 0.8;
-  margin-bottom: 15px;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
@@ -151,8 +141,7 @@
 }
 
 .card-action {
-  margin-top: auto;  
- 
+  margin-top: auto;
   border-radius: 8px;
 }
 
@@ -171,36 +160,96 @@
   height: 12px;
 }
 
-/* Theme Colors for Buttons */
-.board-card[data-theme="caramel"] .action-tag { background-color: #c96a15; color: white;}
-.board-card[data-theme="amber"] .action-tag { background-color: #f2a45a; color: #522c25;}
-.board-card[data-theme="terracotta"] .action-tag { background-color: #b54a31; color: white;}
-.board-card[data-theme="slate"] .action-tag { background-color: #6b8b9e; color: #522c25;}
+.board-card[data-theme='caramel'] .action-tag { background-color: #c96a15; color: white; }
+.board-card[data-theme='amber'] .action-tag { background-color: #f2a45a; color: #522c25; }
+.board-card[data-theme='terracotta'] .action-tag { background-color: #b54a31; color: white; }
+.board-card[data-theme='slate'] .action-tag { background-color: #6b8b9e; color: #522c25; }
 
-/* Hover Effects */
-.board-card[data-theme="caramel"]:hover { background-color: #c96a15; .action-tag{
-    color: #c96a15;
-}}
-.board-card[data-theme="amber"]:hover { background-color: #f2a45a; }
-.board-card[data-theme="terracotta"]:hover { background-color: #b54a31; }
-.board-card[data-theme="slate"]:hover { background-color: #6b8b9e; }
+.board-card[data-theme='caramel']:hover { background-color: #c96a15; .action-tag { color: #c96a15; } }
+.board-card[data-theme='amber']:hover { background-color: #f2a45a; }
+.board-card[data-theme='terracotta']:hover { background-color: #b54a31; }
+.board-card[data-theme='slate']:hover { background-color: #6b8b9e; }
 
+.board-card:hover[data-theme='caramel'] .action-tag { background-color: white; color: #c96a15; }
+.board-card:hover[data-theme='amber'] .action-tag { background-color: #522c25; color: #f2a45a; }
+.board-card:hover[data-theme='terracotta'] .action-tag { background-color: white; color: #b54a31; }
+.board-card:hover[data-theme='slate'] .action-tag { background-color: #522c25; color: #6b8b9e; }
 
-.board-card:hover[data-theme="caramel"] .action-tag { background-color: white; color: #c96a15;}
-.board-card:hover[data-theme="amber"] .action-tag { background-color: #522c25; color: #f2a45a;}
-.board-card:hover[data-theme="terracotta"] .action-tag { background-color: white; color: #b54a31;}
-.board-card:hover[data-theme="slate"] .action-tag { background-color: #522c25; color: #6b8b9e;}
-
-
-.board-card:hover .card-header{
+.board-card:hover .card-header {
   color: white !important;
 }
-.board-card:hover .card-title{
+
+.board-card:hover .card-title {
   color: white;
 }
- 
+
 .board-card:hover .card-date,
 .board-card:hover .card-desc {
-  
   opacity: 1;
-} 
+}
+
+@media (max-width: 1100px) {
+  .header-text .title-accent,
+  .header-text .title-main {
+    width: auto;
+    max-width: min(88vw, 560px);
+  }
+}
+
+@media (max-width: 900px) {
+  .brewzo-container {
+    padding: 28px 0;
+  }
+
+  .board-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 14px;
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+
+  .header-text .title-accent,
+  .header-text .title-main {
+    max-width: 96vw;
+  }
+
+  .nav-arrows {
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .header-text .title-accent,
+  .header-text .title-main {
+    font-size: clamp(2rem, 10vw, 2.6rem);
+    max-width: 96vw;
+  }
+
+  .board-card {
+    flex-basis: min(360px, calc(100vw - 28px));
+    min-height: 615px;
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .board-header {
+    padding-inline: 12px;
+  }
+
+  .board-card {
+    flex-basis: min(360px, calc(100vw - 20px));
+    min-height: 560px;
+    padding: 16px;
+  }
+
+  .card-image-box {
+    max-width: 100%;
+    margin-bottom: 18px;
+  }
+
+  .card-title {
+    font-size: 1rem;
+  }
+}

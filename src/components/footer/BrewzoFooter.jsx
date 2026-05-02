@@ -1,6 +1,4 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { SiSwiggy, SiZomato  } from "react-icons/si";
- 
 import './BrewzoFooter.css';
 import {
   FaFacebook,
@@ -13,20 +11,22 @@ import {
   FaEllipsisH,
 } from 'react-icons/fa';
 import { IoAddCircleOutline } from 'react-icons/io5';
+import { SiSwiggy, SiZomato } from 'react-icons/si';
 import LogoLoop from './LogoLoop';
 
 const companyLinks = [
   { href: '#about', label: 'About' },
-  { href: '#blog', label: 'Blog' },
+  { href: '#Reviews', label: 'Reviews' },
   { href: '#contact', label: 'Contact' },
+  {href: "#Events", label: "Events"}
 ];
 
 const shopLinks = [
   { href: '#coffee', label: 'Coffee' },
-  { href: '#subscriptions', label: 'Subscriptions' },
-  { href: '#gear', label: 'Brewzo Gear' },
-  { href: '#equipment', label: 'Brewing Equipment' },
-  { href: '#shop-all', label: 'Shop All' },
+  { href: '#Beans', label: 'Beans' },
+  { href: '#Bakery', label: 'Bakery' },
+  { href: '#Muffins', label: 'Muffins' },
+  { href: '#Croissant', label: 'Croissant' },
 ];
 
 const playlistTracks = [
@@ -146,15 +146,17 @@ const BrewzoFooter = () => {
           <div className="footer-col brand-contact-col">
             <div className="brand-header">
               <h1>Brewzo India</h1>
-              <div className="radio-icon-box" />
+               
             </div>
 
             <div className="contact-info-block">
-              <a className="visit-badge" href="https://maps.app.goo.gl/5MdMZMt6Arm5ubA66" target="_blank" rel="noopener noreferrer" style={{textDecoration: 'none'}}>
+             
+              <div className="contact-details">
+                 
+                <div className="address-block">
+                  <a className="visit-badge" href="https://maps.app.goo.gl/5MdMZMt6Arm5ubA66" target="_blank" rel="noopener noreferrer" style={{textDecoration: 'none'}}>
                 VISIT US
               </a>
-              <div className="contact-details">
-                <div className="address-block">
                   <p>E-4/68, arera colony, Bhopal, Madhya Pradesh</p>
                 </div>
                 <div className="social-block">
@@ -167,9 +169,9 @@ const BrewzoFooter = () => {
                       <FaInstagram />
                     </a>
                     <a href="https://www.swiggy.com/city/bhopal/brewzo-cafe-arera-colony-10-no-market-rest938705">
-                       <SiSwiggy />
+                      <SiSwiggy />
                     </a>
-                    <a href="https://www.zomato.com/bhopal/brewzo-cafe-arera-colony/order">
+                    <a href="https://www.zomato.com/bhopal/brewzo-cafe-arera-colony">
                       <SiZomato />
                     </a>
                   </div>
