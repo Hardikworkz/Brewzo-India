@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import ModalDrop from '../ui/modal-drop';
 import LogoLoop from '../footer/LogoLoop';
 import './EventsBoard.css';
@@ -14,6 +14,12 @@ const eventsData = [
     subtitle: 'Gen Run',
     description: 'A high-energy community run and rave-style coffee social hosted with Gen Run.',
     image: event1,
+    media: [
+      { type: 'image', src: '/events-media/event-image-01.jpg', alt: 'Run and Rave moment 1' },
+      { type: 'image', src: '/events-media/event-image-02.jpg', alt: 'Run and Rave moment 2' },
+      { type: 'video', src: '/events-media/event-video-01.mp4', alt: 'Run and Rave video 1' },
+      { type: 'video', src: '/events-media/event-video-02.mp4', alt: 'Run and Rave video 2' },
+    ],
   },
   {
     id: 2,
@@ -22,6 +28,11 @@ const eventsData = [
     subtitle: 'Lavana Candles',
     description: 'A hands-on candle making experience in collaboration with Lavana Candles.',
     image: event2,
+    media: [
+      { type: 'image', src: '/events-media/event-image-03.jpg', alt: 'Candle workshop moment 1' },
+      { type: 'image', src: '/events-media/event-image-04.jpg', alt: 'Candle workshop moment 2' },
+      { type: 'video', src: '/events-media/event-video-03.mp4', alt: 'Candle workshop video' },
+    ],
   },
   {
     id: 3,
@@ -30,6 +41,11 @@ const eventsData = [
     subtitle: 'Parkhi',
     description: 'An expressive open mic evening in partnership with Parkhi.',
     image: event1,
+    media: [
+      { type: 'image', src: '/events-media/event-image-05.jpg', alt: 'Open mic moment 1' },
+      { type: 'image', src: '/events-media/event-image-06.jpg', alt: 'Open mic moment 2' },
+      { type: 'video', src: '/events-media/event-video-04.mp4', alt: 'Open mic video' },
+    ],
   },
   {
     id: 4,
@@ -38,6 +54,11 @@ const eventsData = [
     subtitle: 'Coffee Craft',
     description: 'Interactive sessions focused on brewing techniques, flavor notes, and coffee craft.',
     image: event2,
+    media: [
+      { type: 'image', src: '/events-media/event-image-07.jpg', alt: 'Brewing session moment' },
+      { type: 'video', src: '/events-media/event-video-05.mp4', alt: 'Brewing session video 1' },
+      { type: 'video', src: '/events-media/event-video-06.mp4', alt: 'Brewing session video 2' },
+    ],
   },
   {
     id: 5,
@@ -46,6 +67,11 @@ const eventsData = [
     subtitle: 'Live Community',
     description: 'An open jamming experience with live music, conversations, and great brews.',
     image: event1,
+    media: [
+      { type: 'image', src: '/events-media/event-image-08.jpg', alt: 'Jamming moment 1' },
+      { type: 'image', src: '/events-media/event-image-09.jpg', alt: 'Jamming moment 2' },
+      { type: 'video', src: '/events-media/event-video-07.mp4', alt: 'Jamming video' },
+    ],
   },
   {
     id: 6,
@@ -54,22 +80,36 @@ const eventsData = [
     subtitle: 'Creative Studio',
     description: 'A guided resin art workshop built for creators of all levels.',
     image: event2,
+    media: [
+      { type: 'image', src: '/events-media/event-image-10.jpg', alt: 'Resin art workshop moment' },
+      { type: 'video', src: '/events-media/event-video-08.mp4', alt: 'Resin art workshop video' },
+      { type: 'image', src: '/events-media/event-image-01.jpg', alt: 'Resin art detail' },
+    ],
   },
 ];
 
-const eventsCarouselImages = [
-  { src: event1, alt: 'Event moment' },
-  { src: event2, alt: 'Live performance' },
-  { src: 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=900&q=80', alt: 'Creative session' },
-  { src: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=900&q=80', alt: 'Event crowd' },
-  { src: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=900&q=80', alt: 'Live stage lights' },
-  { src: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=900&q=80', alt: 'Audience vibes' },
-  { src: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=900&q=80', alt: 'Night event' },
-];
+const buildLoopMedia = (mediaItems) => {
+  if (!mediaItems?.length) {
+    return [];
+  }
+
+  let repeatCount = 1;
+  if (mediaItems.length <= 3) {
+    repeatCount = 3;
+  } else if (mediaItems.length <= 5) {
+    repeatCount = 2;
+  }
+
+  return Array.from({ length: repeatCount }, (_, copyIndex) =>
+    mediaItems.map((item, itemIndex) => ({
+      ...item,
+      key: `${copyIndex}-${itemIndex}-${item.src}`,
+    }))
+  ).flat();
+};
 
 const EventBoard = () => {
   const sliderRef = useRef(null);
-  const modalCarouselRef = useRef(null);
   const [activeCard, setActiveCard] = useState(null);
 
   useEffect(() => {
@@ -98,31 +138,10 @@ const EventBoard = () => {
     };
   }, []);
 
-  useEffect(() => {
-    const modalCarousel = modalCarouselRef.current;
-    if (!modalCarousel) return;
-
-    const handleModalWheel = (evt) => {
-      evt.preventDefault();
-      const delta =
-        Math.abs(evt.deltaX) > Math.abs(evt.deltaY) ? evt.deltaX : evt.deltaY;
-
-      if (delta === 0) {
-        return;
-      }
-
-      modalCarousel.scrollBy({
-        left: delta < 0 ? -220 : 220,
-        behavior: 'smooth'
-      });
-    };
-
-    modalCarousel.addEventListener('wheel', handleModalWheel, { passive: false });
-
-    return () => {
-      modalCarousel.removeEventListener('wheel', handleModalWheel);
-    };
-  }, [activeCard]);
+  const popupLoopMedia = useMemo(
+    () => buildLoopMedia(activeCard?.media ?? []),
+    [activeCard]
+  );
 
   const closeModal = () => {
     setActiveCard(null);
@@ -191,18 +210,34 @@ const EventBoard = () => {
               </div>
             </div>
 
-            <div className="modal-inline-carousel" ref={modalCarouselRef}>
+            <div className="modal-inline-carousel event-popup-media-track">
               <LogoLoop
-                logos={eventsCarouselImages}
-                speed={42}
+                logos={popupLoopMedia}
+                speed={34}
                 gap={12}
                 logoHeight={84}
                 fadeOut
                 fadeOutColor="#fff9f2"
-                ariaLabel="Event gallery images"
+                ariaLabel={`${activeCard.title} gallery`}
                 renderItem={(item, key) => (
-                  <div className="modal-carousel-item" key={key}>
-                    <img src={item.src} alt={item.alt} />
+                  <div className="modal-carousel-item event-popup-media-item" key={item.key ?? key}>
+                    {item.type === 'video' ? (
+                      <video
+                        className="event-popup-media-video"
+                        src={item.src}
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        preload="metadata"
+                        disablePictureInPicture
+                        onPause={(event) => {
+                          event.currentTarget.play().catch(() => {});
+                        }}
+                      />
+                    ) : (
+                      <img src={item.src} alt={item.alt} />
+                    )}
                   </div>
                 )}
               />

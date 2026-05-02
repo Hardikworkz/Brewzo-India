@@ -121,6 +121,22 @@
   display: none;
 }
 
+.event-popup-media-track {
+  padding-bottom: 4px;
+}
+
+.event-popup-media-item {
+  flex: 0 0 auto;
+}
+
+.event-popup-media-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+}
+
 .event-card {
   flex: 0 0 min(345px, calc(100vw - 64px));
   min-height: 505px;
