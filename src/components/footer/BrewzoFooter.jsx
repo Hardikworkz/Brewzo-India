@@ -1,4 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { SiSwiggy, SiZomato  } from "react-icons/si";
+ 
 import './BrewzoFooter.css';
 import {
   FaFacebook,
@@ -163,6 +165,12 @@ const BrewzoFooter = () => {
                     </a>
                     <a href="https://www.instagram.com/brewzoindia/">
                       <FaInstagram />
+                    </a>
+                    <a href="https://www.swiggy.com/city/bhopal/brewzo-cafe-arera-colony-10-no-market-rest938705">
+                       <SiSwiggy />
+                    </a>
+                    <a href="https://www.zomato.com/bhopal/brewzo-cafe-arera-colony/order">
+                      <SiZomato />
                     </a>
                   </div>
                 </div>
