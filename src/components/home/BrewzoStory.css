@@ -89,20 +89,49 @@
     height: auto;
   }
 
-  .brewzo-story__image-panel,
-  .brewzo-story__panel {
-    width: 100%;
-  }
-
+   
   .brewzo-story__image-panel {
     min-height: 280px;
   }
 
-  .brewzo-story__panel {
-    padding: 28px 22px 30px;
+  .story-doodle img{
+  
+    position: relative;
+    bottom: 20px;
+  }
+}
+
+
+@media (max-width: 550px) {
+   
+  .brewzo-story__heading {
+    margin-bottom: 16px;
   }
 
-  .brewzo-story__text {
-    max-width: 100%;
+  .brewzo-story__image-panel {
+    min-height: 220px;
+  }
+
+   .story-doodle img{
+    position: relative;
+    bottom: 30px;
+  }
+}
+
+@media (max-width: 470px) {
+  
+
+  .brewzo-story__heading {
+    margin-bottom: 16px;
+  }
+
+  .brewzo-story__image-panel {
+    min-height: 220px;
+  }
+   .story-doodle img{
+  
+    position: relative;
+    bottom: 40px;
+    left: 30px;
   }
 }

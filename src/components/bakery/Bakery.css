@@ -50,12 +50,14 @@
   display: flex;
   gap: 8px;
   margin-bottom: 15px;
+  
 }
 
 .nav-arrows button {
   background: #f1ede3;
   border: none;
   width: 32px;
+  border-radius: 13px;
   height: 32px;
   display: flex;
   align-items: center;
