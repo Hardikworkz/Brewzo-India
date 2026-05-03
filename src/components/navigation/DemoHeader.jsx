@@ -11,6 +11,7 @@ const ChevronIcon = () => (
 
 const DemoHeader = () => {
   const [isVisible, setIsVisible] = useState(true);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const lastScrollYRef = useRef(0);
   const navigate = useNavigate();
   const location = useLocation();
@@ -33,6 +34,10 @@ const DemoHeader = () => {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [location.pathname, location.hash]);
 
   const scrollToSection = (sectionId) => {
     const sectionElement = document.getElementById(sectionId);
@@ -70,6 +75,15 @@ const DemoHeader = () => {
     scrollToSection(sectionId);
   };
 
+  const handleMenuToggle = () => {
+    setIsMobileMenuOpen((current) => !current);
+  };
+
+  const handleMenuSectionClick = (event, sectionId) => {
+    handleSectionClick(event, sectionId);
+    setIsMobileMenuOpen(false);
+  };
+
   return (
     <nav className={`navbar ${isVisible ? 'navbar-visible' : 'navbar-hidden'}`}>
       <section className="section1">
@@ -90,6 +104,25 @@ const DemoHeader = () => {
 
       <div className="nav-section actions-section">
         <Link to="/contact">CONTACT US</Link>
+        <button
+          type="button"
+          className={`menu-toggle ${isMobileMenuOpen ? 'menu-toggle-open' : ''}`}
+          onClick={handleMenuToggle}
+          aria-expanded={isMobileMenuOpen}
+          aria-label="Toggle menu"
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+      </div>
+
+      <div className={`mobile-menu ${isMobileMenuOpen ? 'mobile-menu-open' : ''}`}>
+        <a href="/#about" onClick={(event) => handleMenuSectionClick(event, 'about')}>ABOUT</a>
+        <a href="/#beans" onClick={(event) => handleMenuSectionClick(event, 'beans')}>BEANS</a>
+        <a href="/#bakery" onClick={(event) => handleMenuSectionClick(event, 'bakery')}>BAKERY</a>
+        <a href="/#review" onClick={(event) => handleMenuSectionClick(event, 'review')}>REVIEW</a>
+        <Link to="/events" onClick={() => setIsMobileMenuOpen(false)}>EVENTS</Link>
       </div>
     </nav>
   );
