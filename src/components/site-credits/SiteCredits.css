@@ -1,0 +1,64 @@
+.site-credits-page {
+  min-height: 300px;
+  padding: 36px;
+  background: #f6ede3;
+  color: #5a3428;
+  box-sizing: border-box;
+}
+
+.site-credits-page__inner {
+  width: min(100%, 560px);
+}
+
+.site-credits-page__title {
+  margin: 0 0 24px;
+  color: #5a3428;
+  font-family: 'Little Amps Regular', serif;
+  font-size: 50px;
+  font-weight: 500;
+  line-height: 0.95;
+}
+
+.site-credits-page__group {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.site-credits-page__label {
+  margin: 0;
+  font-family: 'Inclusive Sans', sans-serif;
+  font-size:  18px;
+  line-height: 1;
+  letter-spacing: 0.01em;
+}
+
+.site-credits-page__name {
+  width: fit-content;
+  margin: 0;
+  color: #c43001;
+  font-family: 'Inclusive Sans', sans-serif;
+  font-size:  18px;
+  line-height: 1;
+   letter-spacing: 0.01em;
+  text-decoration: none;
+}
+
+.site-credits-page__name:hover {
+  opacity: 0.8;
+}
+
+.site-credits-page__name--secondary {
+  color: #c43001;
+}
+
+@media (max-width: 640px) {
+  .site-credits-page {
+    min-height: 300px;
+    padding: 44px 22px 40px;
+  }
+
+  .site-credits-page__title {
+    margin-bottom: 26px;
+  }
+}

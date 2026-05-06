@@ -67,9 +67,17 @@ export const brewzoCategoryCards = [
   }
 ];
 
+export const brewzoBeansSection = {
+  label: 'COFFEE BEANS',
+  heading: 'Where Great Coffee Begins',
+  description:
+    'Our beans begin with careful sourcing and end in a cup worth slowing down for. Freshly roasted in-house, handpicked for quality, and crafted with intention, each blend brings together purity, aroma, and the kind of flavor you remember.'
+};
+
 export const brewzoBeans = [
   {
     title: 'House Roast',
+    price: 'From Rs. 1,900.00',
     label: 'SMALL BATCH SIGNATURE BLEND',
     copy: 'Rich, balanced and roasted fresh in-house for everyday brews worth savoring.',
     image: beanOne,
@@ -77,6 +85,7 @@ export const brewzoBeans = [
   },
   {
     title: 'Single Origin Select',
+    price: 'From Rs. 2,200.00',
     label: 'LIMITED ROTATING ORIGINS',
     copy:
       'Handpicked seasonal beans with layered notes, bright aromas and remarkable character.',
@@ -85,28 +94,41 @@ export const brewzoBeans = [
   }
 ];
 
+export const brewzoReviewsSection = {
+  label: 'CUSTOMER REVIEWS',
+  heading: 'Notes From The Neighborhood',
+  description:
+    'Real words from the people who stop by for their everyday coffee, slow conversations, fresh bakes, and Brewzo moments.',
+  ctaText: 'Have you visited Brewzo?',
+  ctaLabel: 'Share Your Experience'
+};
+
 export const brewzoReviews = [
   {
     name: 'Aanya Sharma',
-    rating: '★★★★★',
+    rating: '4.5 / 5',
+    context: 'Everyday Coffee',
     copy:
       'Brewzo has become my everyday escape. The coffee, the vibe, everything just feels right.'
   },
   {
     name: 'Rohan Mehta',
-    rating: '★★★★★',
+    rating: '4.0 / 5',
+    context: 'Work And Chill',
     copy:
       'Fresh coffee, great snacks, and a perfect place to work or just chill with friends.'
   },
   {
     name: 'Neha Kapoor',
-    rating: '★★★★★',
+    rating: '4.2 / 5',
+    context: 'Bakery Picks',
     copy:
       'The in-house bakery is amazing. You can actually taste the quality in every bite.'
   },
   {
     name: 'Arjun Verma',
-    rating: '★★★★★',
+    rating: '5.0 / 5',
+    context: 'Cafe Vibe',
     copy: "One of the coziest spots I've been to. Brewzo just gets the vibe right."
   }
 ];

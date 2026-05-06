@@ -6,6 +6,7 @@ import Home from './Pages/Home'
 import Events from './Pages/Events'
 import Contact from './Pages/Contact'
 import Reviews from './Pages/Reviews'
+import SiteCredits from './Pages/SiteCredits'
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path="/events" element={<Events />} />
             <Route path="/contact" element={ <Contact/> } />
             <Route path="/reviews" element={<Reviews />} />
+            <Route path="/site-credits" element={<SiteCredits />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </div>

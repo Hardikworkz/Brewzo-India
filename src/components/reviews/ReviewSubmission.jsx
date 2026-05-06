@@ -10,7 +10,15 @@ const initialFormState = {
 
 export default function ReviewSubmission() {
   const [formState, setFormState] = useState(initialFormState);
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitFeedback, setSubmitFeedback] = useState({
+    type: 'idle',
+    message: ''
+  });
+
+  const reviewApiUrl = `${
+    import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000'
+  }/api/reviews`;
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -19,12 +27,52 @@ export default function ReviewSubmission() {
       ...current,
       [name]: value
     }));
+
+    if (submitFeedback.type !== 'idle') {
+      setSubmitFeedback({
+        type: 'idle',
+        message: ''
+      });
+    }
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    setIsSubmitted(true);
-    setFormState(initialFormState);
+
+    setIsSubmitting(true);
+    setSubmitFeedback({
+      type: 'idle',
+      message: ''
+    });
+
+    try {
+      const response = await fetch(reviewApiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formState)
+      });
+
+      const payload = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        throw new Error(payload.message || 'We could not submit your review right now.');
+      }
+
+      setFormState(initialFormState);
+      setSubmitFeedback({
+        type: 'success',
+        message: payload.message || 'Thanks for sharing your Brewzo experience.'
+      });
+    } catch (error) {
+      setSubmitFeedback({
+        type: 'error',
+        message: error.message || 'We could not submit your review right now.'
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -32,56 +80,75 @@ export default function ReviewSubmission() {
       <div className="brewzo-review-page__shell">
         <div className="brewzo-review-page__form-panel">
           <div className="brewzo-review-page__form-wrap">
+             
             <h1 className="brewzo-review-page__title">Tell Us Your Thoughts</h1>
 
             <form className="brewzo-review-form" onSubmit={handleSubmit}>
               <label>
-                Name
+                <span className="brewzo-review-form__label-text">
+                  Name <span className="brewzo-review-form__required">*</span>
+                </span>
                 <input
                   type="text"
                   name="name"
                   value={formState.name}
                   onChange={handleChange}
+                  autoComplete="name"
                   required
                 />
               </label>
 
               <label>
-                Email
+                <span className="brewzo-review-form__label-text">
+                  Email <span className="brewzo-review-form__required">*</span>
+                </span>
                 <input
                   type="email"
                   name="email"
                   value={formState.email}
                   onChange={handleChange}
+                  autoComplete="email"
                   required
                 />
               </label>
 
               <label>
-                Message
+                <span className="brewzo-review-form__label-text">
+                  Message <span className="brewzo-review-form__required">*</span>
+                </span>
                 <textarea
                   name="message"
                   value={formState.message}
                   onChange={handleChange}
+                  rows="5"
                   required
                 />
               </label>
 
-              <button className="brewzo-review-form__submit" type="submit">
-                Submit Review
+              <button className="brewzo-review-form__submit" type="submit" disabled={isSubmitting}>
+                {isSubmitting ? 'Submitting...' : 'Submit'}
               </button>
             </form>
 
-            {isSubmitted && (
-              <p className="brewzo-review-form__success">
-                Thanks for sharing. Your Brewzo experience has been noted.
+            {submitFeedback.type !== 'idle' && (
+              <p
+                className={`brewzo-review-form__feedback brewzo-review-form__feedback--${submitFeedback.type}`}
+                aria-live="polite"
+              >
+                {submitFeedback.message}
               </p>
             )}
           </div>
         </div>
 
         <div className="brewzo-review-page__image-panel">
-          <img src={reviewImage} alt="Customers enjoying coffee at Brewzo" />
+          <div className="brewzo-review-page__image-container">
+            <img
+              src={reviewImage}
+              alt="Customers enjoying coffee at Brewzo"
+              className="brewzo-review-page__image"
+            />
+          </div>
         </div>
       </div>
     </section>

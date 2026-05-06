@@ -1,4 +1,3 @@
-@import url('https://db.onlinewebfonts.com/c/9dc20852411fd0907cf55db7bec41068?family=Ying+W01+Semi+Bold');
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
 @font-face {
@@ -8,7 +7,7 @@
 }
 
 .brewzo-container {
-  background-color: #fcfaf5;
+  background-color: #fff9f2;
   color: #4a3b32;
   min-height: 100vh;
   padding: 40px 0;
@@ -26,9 +25,20 @@
   box-sizing: border-box;
 }
 
+.heading{
+  width: 720px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.heading img{
+  width: 205px;
+  height: auto;
+}
+
 .header-text .title-accent {
   display: block;
-  font-family: 'Ying W01 Semi Bold';
+  font-family: 'Little Amps Regular', serif;
   font-size: clamp(2.2rem, 4.6vw, 44.8px);
   font-weight: 700;
   width: auto;
@@ -37,7 +47,7 @@
 }
 
 .header-text .title-main {
-  font-family: 'Ying W01 Semi Bold';
+  font-family: 'Little Amps Regular', serif;
   font-size: clamp(2.2rem, 4.6vw, 44.8px);
   font-weight: 700;
   margin: 0;
@@ -124,7 +134,7 @@
 }
 
 .card-title {
-  font-family: 'Ying W01 Semi Bold', serif;
+  font-family: 'Little Amps Regular', serif;
   font-size: 1.1rem;
   letter-spacing: -0.02rem;
   margin: 10px 0;
@@ -211,6 +221,16 @@
     margin-bottom: 16px;
   }
 
+  .board-header .heading {
+    width: 100%;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+  }
+
+  .board-header .heading img {
+    width: clamp(86px, 16vw, 132px);
+  }
+
   .header-text .title-accent,
   .header-text .title-main {
     max-width: 96vw;
@@ -218,14 +238,29 @@
 
   .nav-arrows {
     margin-bottom: 0;
+    align-self: flex-end;
   }
 }
 
 @media (max-width: 640px) {
   .header-text .title-accent,
   .header-text .title-main {
-    font-size: clamp(2rem, 10vw, 2.6rem);
-    max-width: 96vw;
+    font-size: clamp(1.85rem, 8.4vw, 2.35rem);
+    max-width: 100%;
+    line-height: 0.95;
+  }
+
+  .board-header .heading {
+    gap: 10px;
+  }
+
+  .header-text {
+    min-width: 0;
+    flex: 1 1 auto;
+  }
+
+  .board-header .heading img {
+    display: none;
   }
 
   .board-card {
@@ -238,6 +273,16 @@
 @media (max-width: 480px) {
   .board-header {
     padding-inline: 12px;
+  }
+
+  .board-header .heading {
+    gap: 8px;
+    align-items: flex-start;
+  }
+
+  .header-text .title-accent,
+  .header-text .title-main {
+    font-size: clamp(1.6rem, 7vw, 2rem);
   }
 
   .board-card {

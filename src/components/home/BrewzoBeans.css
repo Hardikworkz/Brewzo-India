@@ -1,11 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@font-face {
+  font-family: 'inclusive';
+  src: url('../../assets/inclusivee.woff2') format('woff2');
+  font-display: swap;
+}
+
 .brewzo-beans {
   position: relative;
-  min-height: clamp(760px, 88vw, 980px);
-  padding: clamp(42px, 6vw, 78px) clamp(20px, 6vw, 72px) clamp(54px, 7vw, 88px);
+ min-height: 110vh;
+  padding-top: 80px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   overflow: hidden;
+}
+
+@font-face {
+  font-family: 'Little Amps Regular';
+  src: url('../../assets/brewzoo/fonts/LittleAmpsSerifRegular.woff2') format('woff2');
+  font-display: swap;
 }
 
 .brewzo-beans__overlay {
@@ -24,16 +37,16 @@
   position: relative;
   z-index: 1;
   width: min(100%, 1280px);
-  margin: 0 auto;
+  margin: 0 40px;
 }
 
 .brewzo-beans__label {
   margin: 0 0 14px;
   color: rgba(245, 230, 211, 0.95);
-  font-family: var(--brewzo-body-font);
-  font-size: 0.82rem;
-  font-weight: 700;
-  letter-spacing: 0.22em;
+  font-family:  "inclusivee", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
   line-height: 1;
 }
 
@@ -41,8 +54,8 @@
   margin: 0 0 24px;
   color: var(--brewzo-cream);
   font-family: var(--brewzo-heading-font);
-  font-size: clamp(2.75rem, 5.2vw, 4.45rem);
-  font-weight: 700;
+  font-size: 50px;
+  font-weight: 500;
   line-height: 0.95;
 }
 
@@ -51,76 +64,129 @@
   margin: 0;
   color: rgba(245, 230, 211, 0.94);
   font-family: var(--brewzo-body-font);
-  font-size: clamp(1rem, 1.15vw, 1.12rem);
-  line-height: 1.68;
+  font-size: 16px;
+  line-height: 1.2;
 }
 
 .brewzo-beans__cards {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 320px));
-  gap: clamp(18px, 2vw, 24px);
-  align-items: start;
+  grid-template-columns: repeat(2, minmax(0, 345px));
+  grid-auto-rows: 1fr;
+  gap: 1.5rem;
+  align-items: stretch;
   margin-top: clamp(34px, 5vw, 48px);
 }
 
 .brewzo-beans__card {
-  overflow: hidden;
-  background: var(--brewzo-cream);
+  min-height: 505px;
+  background-color: #fff9f2;
+  color: #333;
+  border-radius: 8px;
+  padding: 35px;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
   box-shadow: 0 24px 54px rgba(28, 18, 17, 0.26);
-  color: var(--brewzo-coffee);
+}
+
+.brewzo-beans__card-image-wrapper {
+  width: 100%;
+  max-width: 273px;
+  aspect-ratio: 1 / 1;
+  margin: 0 auto 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #eae3da;
 }
 
 .brewzo-beans__card-image {
-  display: block;
   width: 100%;
-  aspect-ratio: 1.08 / 1;
+  height: 100%;
   object-fit: cover;
+  display: block;
 }
 
-.brewzo-beans__card-body {
-  padding: 18px 18px 20px;
+.brewzo-beans__card-content {
+  width: 100%;
+  max-width: 273px;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 146px;
+  flex: 1 1 auto;
 }
 
-.brewzo-beans__card-body h3 {
-  margin: 0 0 10px;
-  font-family: var(--brewzo-heading-font);
-  font-size: clamp(1.6rem, 2.2vw, 1.95rem);
-  font-weight: 700;
+.brewzo-beans__card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 0.25rem;
+  min-height: 42px;
+}
+
+.brewzo-beans__card-header h3 {
+  font-size: 20px;
+  font-weight: 500;
   line-height: 1;
+  font-family: 'Little Amps Regular', serif;
+  margin: 0 0 3px;
+  color: #3b1f1a;
+}
+
+.brewzo-beans__card-price {
+  color: #4a2b20;
+  font-family: 'Inclusive Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06rem;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .brewzo-beans__card-label {
-  margin: 0 0 12px;
-  color: rgba(75, 46, 43, 0.72);
-  font-family: var(--brewzo-body-font);
-  font-size: 0.74rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  line-height: 1.25;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.1rem;
+  color: #8e7b70;
+  font-family: 'Inclusive Sans', sans-serif;
+  margin: 0 0 20px;
+  display: block;
+  line-height: 1;
 }
 
 .brewzo-beans__card-copy {
-  margin: 0 0 20px;
-  color: rgba(75, 46, 43, 0.88);
-  font-family: var(--brewzo-body-font);
-  font-size: 0.97rem;
-  line-height: 1.58;
+  font-size: 12px;
+  line-height: 1.3;
+  padding-bottom: 22px;
+  color: #7e6b61;
+  font-family: 'Inclusive Sans', sans-serif;
+  flex-grow: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin: 0;
 }
 
 .brewzo-beans__card-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 40px;
-  padding: 10px 16px;
-  background: var(--brewzo-burnt-orange);
-  color: var(--brewzo-cream);
-  font-family: var(--brewzo-body-font);
-  font-size: 0.74rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  line-height: 1;
+  align-self: flex-start;
+  background-color: #c44d24;
+  color: white;
+  border: none;
+ 
+  padding: 4px 8px;
+  font-family: 'Inclusive Sans', sans-serif;
+  font-size: 12px;
   text-transform: uppercase;
+  font-weight: 400;
+  letter-spacing: 0.05rem;
+  line-height: 1;
+  text-wrap: nowrap;
+  text-align: center;
+  border-radius: 2px;
 }
 
 @media (max-width: 640px) {
@@ -134,19 +200,58 @@
   }
 
   .brewzo-beans__cards {
-    grid-template-columns: 1fr;
     margin-top: 24px;
+  }
+
+  .brewzo-beans__card {
+    width: 345px;
+    min-height: 505px;
+    padding: 35px;
   }
 }
 
 @media (max-width: 900px) {
   .brewzo-beans {
     min-height: auto;
-    padding-inline: 18px;
+  }
+
+  .brewzo-beans__content {
+    width: 100%;
+    
+    box-sizing: border-box;
   }
 
   .brewzo-beans__cards {
-    grid-template-columns: 1fr;
-    max-width: 480px;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    gap: 1.5rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    margin-top: 24px;
+    margin-bottom: 2rem;
+
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .brewzo-beans__cards::-webkit-scrollbar {
+    display: none;
+  }
+
+  .brewzo-beans__card {
+    flex: 0 0 345px;
+    width: 345px;
+    min-height: 505px;
+    padding: 35px;
+  }
+}
+
+@media (max-width: 480px) {
+  .brewzo-beans__card {
+    width: 345px;
+    padding: 35px;
   }
 }

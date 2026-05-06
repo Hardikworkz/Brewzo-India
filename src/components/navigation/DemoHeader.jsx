@@ -103,7 +103,8 @@ const DemoHeader = () => {
       </section>
 
       <div className="nav-section actions-section">
-        <Link to="/contact">CONTACT US</Link>
+        <Link to="/reviews">CONTACT US</Link>
+       
         <button
           type="button"
           className={`menu-toggle ${isMobileMenuOpen ? 'menu-toggle-open' : ''}`}

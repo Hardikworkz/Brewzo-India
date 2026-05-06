@@ -1,5 +1,7 @@
 import sectionImage from '../../assets/brewzoo/images/section-2.png';
 import './BrewzoAbout.css';
+import doodle from '../../assets/about-doodle.png';
+
 
 export default function BrewzoAbout() {
   return (
@@ -14,7 +16,9 @@ export default function BrewzoAbout() {
         </p>
 
         <div className="brewzo-about__image">
-          <img src={sectionImage} alt="Brewzo coffee and treats" />
+           <doodle className="brewzo-about__doodle" >
+                <img src={doodle} alt="" />
+            </doodle>
         </div>
       </div>
     </section>

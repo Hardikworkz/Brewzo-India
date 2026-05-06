@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
 import reviewBackground from '../../assets/brewzoo/images/review-bg.jpeg';
-import { brewzoReviews } from './brewzoHomeData';
+import { brewzoReviews, brewzoReviewsSection } from './brewzoHomeData';
 import './BrewzoReviews.css';
+import doodle from '../../assets/review-doodle.png';
+
 
 export default function BrewzoReviews() {
   return (
@@ -15,23 +17,35 @@ export default function BrewzoReviews() {
       <div className="brewzo-reviews__overlay" />
 
       <div className="brewzo-reviews__content">
-        <h2 className="brewzo-reviews__title">What Our Customers Say</h2>
-
-        <div className="brewzo-reviews__list">
-          {brewzoReviews.map((review) => (
-            <article className="brewzo-reviews__card" key={review.name}>
-              <div className="brewzo-reviews__card-top">
-                <h3>{review.name}</h3>
-                <span>{review.rating}</span>
-              </div>
-              <p>{`"${review.copy}"`}</p>
-            </article>
-          ))}
+        <div className="brewzo-reviews__intro-row">
+          <div className="brewzo-reviews__intro">
+            <p className="brewzo-reviews__eyebrow">{brewzoReviewsSection.label}</p>
+            <h2 className="brewzo-reviews__title">{brewzoReviewsSection.heading}</h2>
+            <p className="brewzo-reviews__description">{brewzoReviewsSection.description}</p>
+          </div>
+          <img src={doodle} alt="Review doodle" className="brewzo-reviews__doodle" />
         </div>
 
-        <p className="brewzo-reviews__cta-text">Have you visited Brewzo?</p>
+        <div className="brewzo-reviews__carousel-wrap">
+          <div className="brewzo-reviews__list">
+            {brewzoReviews.map((review) => (
+              <article className="brewzo-reviews__card" key={review.name}>
+                <span className="brewzo-reviews__quote-mark">"</span>
+                <div className="brewzo-reviews__card-top">
+                  <div>
+                    <h3>{review.name}</h3>
+                    <p className="brewzo-reviews__context">{review.context}</p>
+                  </div>
+                  <span className="brewzo-reviews__rating">{review.rating}</span>
+                </div>
+                <p className="brewzo-reviews__copy">{review.copy}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+
         <Link to="/reviews" className="brewzo-reviews__cta-button">
-          Share Your Experience
+          {brewzoReviewsSection.ctaLabel}
         </Link>
       </div>
     </section>

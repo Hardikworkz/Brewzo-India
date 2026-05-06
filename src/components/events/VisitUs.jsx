@@ -60,8 +60,9 @@ const VisitUs = () => {
             </div>
           </div>
           <p>
-            We have two convenient Harrisburg locations, each with its own
-            flavor, both serving tasty coffee and chill vibes every day!
+            Visit Brewzo in Arera Colony for specialty coffee, cafe comfort
+            food, and a warm everyday space made for slow mornings, work
+            breaks, and easy catch-ups over great brews.
           </p>
         </div>
 

@@ -1,5 +1,5 @@
 import beanBackground from '../../assets/brewzoo/images/bean-bg.jpeg';
-import { brewzoBeans } from './brewzoHomeData';
+import { brewzoBeans, brewzoBeansSection } from './brewzoHomeData';
 import './BrewzoBeans.css';
 
 export default function BrewzoBeans() {
@@ -15,25 +15,25 @@ export default function BrewzoBeans() {
       <div className="brewzo-beans__overlay" />
 
       <div className="brewzo-beans__content">
-        <p className="brewzo-beans__label">IN HOUSE BEANS</p>
-        <h2 className="brewzo-beans__heading">Where Great Coffee Begins</h2>
-        <p className="brewzo-beans__description">
-          Our beans begin with careful sourcing and end in a cup worth slowing down
-          for. Freshly roasted in-house, handpicked for quality, and crafted with
-          intention, each blend brings together purity, aroma, and the kind of
-          flavor you remember.
-        </p>
+        <p className="brewzo-beans__label">{brewzoBeansSection.label}</p>
+        <h2 className="brewzo-beans__heading">{brewzoBeansSection.heading}</h2>
+        <p className="brewzo-beans__description">{brewzoBeansSection.description}</p>
 
         <div className="brewzo-beans__cards">
           {brewzoBeans.map((bean) => (
             <article className="brewzo-beans__card" key={bean.title}>
-              <img
-                className="brewzo-beans__card-image"
-                src={bean.image}
-                alt={bean.alt}
-              />
-              <div className="brewzo-beans__card-body">
-                <h3>{bean.title}</h3>
+              <div className="brewzo-beans__card-image-wrapper">
+                <img
+                  className="brewzo-beans__card-image"
+                  src={bean.image}
+                  alt={bean.alt}
+                />
+              </div>
+              <div className="brewzo-beans__card-content">
+                <div className="brewzo-beans__card-header">
+                  <h3>{bean.title}</h3>
+                  <span className="brewzo-beans__card-price">{bean.price}</span>
+                </div>
                 <p className="brewzo-beans__card-label">{bean.label}</p>
                 <p className="brewzo-beans__card-copy">{bean.copy}</p>
                 <span className="brewzo-beans__card-button">Quick View</span>

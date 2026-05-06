@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import './BrewzoFooter.css';
 import {
   FaFacebook,
@@ -347,7 +348,7 @@ const BrewzoFooter = () => {
 
       <div className="footer-bottom-bar">
         <span>Â© 2026 BREWZO INDIA</span>
-        <span>SITE CREDITS</span>
+        <Link to="/site-credits" className="footer-bottom-bar__link">SITE CREDITS</Link>
       </div>
     </footer>
   );

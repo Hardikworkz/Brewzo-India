@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useMemo, useRef, useState } from 'react';
 import ModalDrop from '../ui/modal-drop';
 import LogoLoop from '../footer/LogoLoop';
 import './EventsBoard.css';
@@ -111,32 +111,6 @@ const buildLoopMedia = (mediaItems) => {
 const EventBoard = () => {
   const sliderRef = useRef(null);
   const [activeCard, setActiveCard] = useState(null);
-
-  useEffect(() => {
-    const slider = sliderRef.current;
-    if (!slider) return;
-
-    const handleWheel = (evt) => {
-      evt.preventDefault();
-      const delta =
-        Math.abs(evt.deltaX) > Math.abs(evt.deltaY) ? evt.deltaX : evt.deltaY;
-
-      if (delta === 0) {
-        return;
-      }
-
-      slider.scrollBy({
-        left: delta < 0 ? -300 : 300,
-        behavior: 'smooth'
-      });
-    };
-
-    slider.addEventListener('wheel', handleWheel, { passive: false });
-
-    return () => {
-      slider.removeEventListener('wheel', handleWheel);
-    };
-  }, []);
 
   const popupLoopMedia = useMemo(
     () => buildLoopMedia(activeCard?.media ?? []),

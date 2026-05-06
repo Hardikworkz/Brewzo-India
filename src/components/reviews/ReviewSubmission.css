@@ -1,159 +1,227 @@
 .brewzo-review-page {
-  min-height: 100vh;
-  background: var(--brewzo-cream);
+  background-color: #fff9f2;
+  color: #4a2e20;
+  min-height: 584px;
+  display: flex;
+  align-items: center;
+  padding: clamp(24px, 4vw, 56px) clamp(16px, 3vw, 32px);
+  box-sizing: border-box;
+}
+
+.brewzo-review-page + .hero-container {
+  margin-top: clamp(20px, 4vw, 36px);
 }
 
 .brewzo-review-page__shell {
   width: min(100%, 1440px);
-  min-height: calc(100vh - 86px);
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: clamp(24px, 4vw, 60px);
 }
 
 .brewzo-review-page__form-panel {
+  flex: 1 1 420px;
+  width: min(100%, 720px);
+  min-height: 584px;
+  border-right: 1px solid #e0dad3;
+  padding: clamp(24px, 4vw, 50px) clamp(20px, 3vw, 50px) 0 clamp(20px, 3vw, 36px);
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: clamp(36px, 6vw, 88px);
-  background: var(--brewzo-cream);
+  flex-direction: column;
+  align-items: flex-start;
+  box-sizing: border-box;
 }
 
 .brewzo-review-page__form-wrap {
-  width: min(100%, 560px);
+  width: 100%;
+}
+
+.brewzo-review-page__eyebrow {
+  margin: 0 0 2px;
+  color: #4a2e20;
+  font-family: 'Inclusive Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  line-height: 1;
+  text-transform: uppercase;
 }
 
 .brewzo-review-page__title {
-  margin: 0 0 clamp(28px, 4vw, 38px);
+  margin: 0 0 18px;
   color: var(--brewzo-coffee);
-  font-family: var(--brewzo-heading-font);
-  font-size: clamp(2.3rem, 4.8vw, 4rem);
-  font-weight: 700;
-  line-height: 0.95;
+  font-family: 'Little Amps Regular', var(--brewzo-heading-font);
+  font-size: clamp(2.7rem, 6vw, 58px);
+  font-weight: 500;
+  line-height: 1.1;
 }
 
 .brewzo-review-form {
-  display: grid;
-  gap: 18px;
+  width: 100%;
+  min-height: 360px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .brewzo-review-form label {
-  display: grid;
-  gap: 8px;
-  color: var(--brewzo-coffee);
-  font-family: var(--brewzo-body-font);
-  font-size: 0.84rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  color: #4a2e20;
+  font-family: 'Inclusive Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.2;
+  margin-bottom: 1px;
+}
+
+.brewzo-review-form__label-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+}
+
+.brewzo-review-form__required {
+  color: #c44d24;
+  margin-left: 4px;
+  font-size: 14px;
 }
 
 .brewzo-review-form input,
 .brewzo-review-form textarea {
   width: 100%;
-  padding: 16px 18px;
-  border: 2px solid rgba(75, 46, 43, 0.22);
-  background: rgba(255, 255, 255, 0.6);
-  color: var(--brewzo-coffee);
-  font-family: var(--brewzo-body-font);
-  font-size: 1rem;
+  margin-top: 6px;
+  padding: 12px 16px;
+  border: 1px solid #e0dad3;
+  border-radius: 1px;
+  background-color: #fff9f2;
+  color: #4a2e20;
+  font-family: 'Inclusive Sans', sans-serif;
+  font-size: 14px;
   outline: none;
-  transition:
-    border-color 180ms ease,
-    box-shadow 180ms ease,
-    background 180ms ease;
+  box-sizing: border-box;
+  transition: border-color 180ms ease;
 }
 
 .brewzo-review-form textarea {
-  min-height: 180px;
+  min-height: 120px;
   resize: vertical;
 }
 
 .brewzo-review-form input:focus,
 .brewzo-review-form textarea:focus {
-  border-color: var(--brewzo-burnt-orange);
-  box-shadow: 0 0 0 4px rgba(200, 74, 47, 0.12);
-  background: #fff;
+  border-color: #4a2e20;
+  box-shadow: none;
+  background: #fff9f2;
 }
 
 .brewzo-review-form__submit {
-  width: max-content;
-  min-height: 48px;
-  padding: 14px 24px;
+  width: 100%;
+  margin-top: 10px;
+  min-height: 0;
+  padding: 3px;
   border: 0;
-  background: var(--brewzo-burnt-orange);
-  color: var(--brewzo-cream);
+  border-radius: 1px;
+  background: #c44d24;
+  color: #fff;
   cursor: pointer;
-  font-family: var(--brewzo-body-font);
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
+  font-family: 'Inclusive Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-align: center;
   text-transform: uppercase;
-  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+  transition: background-color 0.3s ease;
 }
 
 .brewzo-review-form__submit:hover,
 .brewzo-review-form__submit:focus-visible {
-  background: #b8442b;
-  transform: translateY(-1px);
-  box-shadow: 0 14px 30px rgba(42, 25, 23, 0.18);
+  background: #382116;
+  box-shadow: none;
 }
 
-.brewzo-review-form__success {
+.brewzo-review-form__submit:disabled {
+  background: #8d6758;
+  cursor: wait;
+}
+
+.brewzo-review-form__feedback {
   margin: 18px 0 0;
+  font-family: 'Inclusive Sans', sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.brewzo-review-form__feedback--success {
   color: rgba(75, 46, 43, 0.86);
-  font-family: var(--brewzo-body-font);
-  line-height: 1.6;
+}
+
+.brewzo-review-form__feedback--error {
+  color: #b54827;
 }
 
 .brewzo-review-page__image-panel {
-  min-height: calc(100vh - 86px);
-  background: var(--brewzo-coffee-deep);
+  flex: 1 1 360px;
+  width: 360px;
+  height: 720px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+ }
+
+.brewzo-review-page__image-container {
+   height:100%;
+  aspect-ratio: 672 / 488;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
 }
 
-.brewzo-review-page__image-panel img {
-  display: block;
+.brewzo-review-page__image {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
 
 @media (max-width: 820px) {
   .brewzo-review-page__shell {
-    grid-template-columns: 1fr;
+    flex-direction: column;
+    gap: 55px;
   }
 
   .brewzo-review-page__form-panel {
-    order: 1;
-    padding: 30px 18px 36px;
+    width: 100%;
+    min-height: 0;
+    border-right: 0;
+     padding-bottom: 28px;
   }
 
   .brewzo-review-page__image-panel {
-    order: 2;
-    min-height: 360px;
+    width: 100%;
+    margin-top: 0;
+    border: none;
   }
 }
 
 @media (max-width: 480px) {
-  .brewzo-review-page__form-panel {
-    padding: 24px 12px 30px;
+  .brewzo-review-page {
+    padding: 16px 10px;
   }
 
-  .brewzo-review-form {
-    gap: 14px;
+  .brewzo-review-page__form-panel {
+    padding: 18px 14px 22px;
+  }
+
+  .brewzo-review-page__title {
+    margin-bottom: 18px;
   }
 
   .brewzo-review-form input,
   .brewzo-review-form textarea {
-    padding: 13px 14px;
-    font-size: 0.95rem;
-  }
-
-  .brewzo-review-form__submit {
-    width: 100%;
-  }
-
-  .brewzo-review-page__image-panel {
-    min-height: 280px;
+    padding: 10px 12px;
   }
 }

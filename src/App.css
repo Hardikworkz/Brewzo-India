@@ -6,6 +6,12 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'Little Amps Regular';
+  src: url('./assets/brewzoo/fonts/LittleAmpsSerifRegular.woff2') format('woff2');
+  font-display: swap;
+}
+
 :root {
   --brewzo-coffee: #4b2e2b;
   --brewzo-coffee-deep: #2a1917;

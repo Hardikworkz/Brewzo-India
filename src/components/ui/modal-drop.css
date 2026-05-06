@@ -56,7 +56,7 @@
 
 .modal-drop-title {
   margin: 0;
-  font-family: "Ying W01 Semi Bold", Georgia, serif;
+  font-family: 'Little Amps Regular', serif;
   font-size: clamp(1.25rem, 1.8vw, 1.75rem);
   line-height: 1.1;
   letter-spacing: 0.01em;
