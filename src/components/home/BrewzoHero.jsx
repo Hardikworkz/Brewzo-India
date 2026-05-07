@@ -8,7 +8,7 @@ export default function BrewzoHero() {
       <div className="main">
         <video className="brewzo-hero__video" src={heroVideo} autoPlay loop muted playsInline />
         <div className="logo">
-          <h1 className="logo__title">Brewzo India</h1>
+          <h1 className="logo__title">Brewzo </h1>
         </div>
       </div>
 

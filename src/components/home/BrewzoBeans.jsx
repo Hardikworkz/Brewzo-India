@@ -36,7 +36,7 @@ export default function BrewzoBeans() {
                 </div>
                 <p className="brewzo-beans__card-label">{bean.label}</p>
                 <p className="brewzo-beans__card-copy">{bean.copy}</p>
-                <span className="brewzo-beans__card-button">Quick View</span>
+                <span className="brewzo-beans__card-button">Buy Now</span>
               </div>
             </article>
           ))}

@@ -2,15 +2,21 @@ import React, { useMemo, useRef, useState } from 'react';
 import ModalDrop from '../ui/modal-drop';
 import LogoLoop from '../footer/LogoLoop';
 import './EventsBoard.css';
-import event1 from '../../assets/event1.png';
-import event2 from '../../assets/event2.png';
+import event1 from '../../assets/run_event.png';
+import event2 from '../../assets/candle_event.png';
+import event6 from '../../assets/rasein_event.png';
+import event3 from '../../assets/open_event.png';
+import event5 from '../../assets/event1.png';
+import event4 from '../../assets/brew_event.png';
+
+
 import doodle from '../../assets/doodle_events.png';
 
 const eventsData = [
   {
     id: 1,
     date: 'Brewzo Events',
-    title: 'Run and Rave With',
+    title: 'Run and Rave',
     subtitle: 'Gen Run',
     description: 'A high-energy community run and rave-style coffee social hosted with Gen Run.',
     image: event1,
@@ -40,7 +46,7 @@ const eventsData = [
     title: 'Open Mic',
     subtitle: 'Parkhi',
     description: 'An expressive open mic evening in partnership with Parkhi.',
-    image: event1,
+    image: event3,
     media: [
       { type: 'image', src: '/events-media/event-image-05.jpg', alt: 'Open mic moment 1' },
       { type: 'image', src: '/events-media/event-image-06.jpg', alt: 'Open mic moment 2' },
@@ -53,7 +59,7 @@ const eventsData = [
     title: 'Brewing Sessions',
     subtitle: 'Coffee Craft',
     description: 'Interactive sessions focused on brewing techniques, flavor notes, and coffee craft.',
-    image: event2,
+    image: event4,
     media: [
       { type: 'image', src: '/events-media/event-image-07.jpg', alt: 'Brewing session moment' },
       { type: 'video', src: '/events-media/event-video-05.mp4', alt: 'Brewing session video 1' },
@@ -66,7 +72,7 @@ const eventsData = [
     title: 'Jamming',
     subtitle: 'Live Community',
     description: 'An open jamming experience with live music, conversations, and great brews.',
-    image: event1,
+    image: event5,
     media: [
       { type: 'image', src: '/events-media/event-image-08.jpg', alt: 'Jamming moment 1' },
       { type: 'image', src: '/events-media/event-image-09.jpg', alt: 'Jamming moment 2' },
@@ -79,7 +85,7 @@ const eventsData = [
     title: 'Resin Art Workshop',
     subtitle: 'Creative Studio',
     description: 'A guided resin art workshop built for creators of all levels.',
-    image: event2,
+    image: event6,
     media: [
       { type: 'image', src: '/events-media/event-image-10.jpg', alt: 'Resin art workshop moment' },
       { type: 'video', src: '/events-media/event-video-08.mp4', alt: 'Resin art workshop video' },

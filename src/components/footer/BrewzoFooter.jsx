@@ -1,60 +1,26 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import './BrewzoFooter.css';
 import {
   FaFacebook,
   FaInstagram,
-  FaSpotify,
-  FaPlay,
-  FaPause,
-  FaStepBackward,
-  FaStepForward,
-  FaEllipsisH,
 } from 'react-icons/fa';
-import { IoAddCircleOutline } from 'react-icons/io5';
 import { SiSwiggy, SiZomato } from 'react-icons/si';
 import LogoLoop from './LogoLoop';
 
 const companyLinks = [
-  { href: '#about', label: 'About' },
-  { href: '#Reviews', label: 'Reviews' },
-  { href: '#contact', label: 'Contact' },
-  {href: "#Events", label: "Events"}
+  { to: '/#about', label: 'About' },
+  { to: '/#review', label: 'Reviews' },
+  { to: '/reviews', label: 'Contact' },
+  { to: '/events', label: 'Events' }
 ];
 
 const shopLinks = [
-  { href: '#coffee', label: 'Coffee' },
-  { href: '#Beans', label: 'Beans' },
-  { href: '#Bakery', label: 'Bakery' },
-  { href: '#Muffins', label: 'Muffins' },
-  { href: '#Croissant', label: 'Croissant' },
-];
-
-const playlistTracks = [
-  {
-    id: 1,
-    title: 'Atmosphere - 2020 Digital R...',
-    artist: 'Joy Division',
-    duration: '04:12',
-    audioSrc: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
-    explicit: false,
-  },
-  {
-    id: 2,
-    title: 'BUFFALO (feat. Shane Powers)',
-    artist: 'Tyler, The Creator',
-    duration: '02:39',
-    audioSrc: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3',
-    explicit: true,
-  },
-  {
-    id: 3,
-    title: 'Right Back to It',
-    artist: 'Waxahatchee',
-    duration: '04:33',
-    audioSrc: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3',
-    explicit: false,
-  },
+  { to: '/#bakery', label: 'Coffee' },
+  { to: '/#bakery', label: 'All Day' },
+  { to: '/#bakery', label: 'Mains' },
+  { to: '/#bakery', label: 'Sides' },
+  { to: '/#bakery', label: 'Platter' },
 ];
 
 function FooterDropdown({ title, links, defaultOpen = false }) {
@@ -63,8 +29,8 @@ function FooterDropdown({ title, links, defaultOpen = false }) {
       <summary>{title}</summary>
       <ul>
         {links.map((link) => (
-          <li key={link.href}>
-            <a href={link.href}>{link.label}</a>
+          <li key={link.to}>
+            <Link to={link.to}>{link.label}</Link>
           </li>
         ))}
       </ul>
@@ -73,10 +39,6 @@ function FooterDropdown({ title, links, defaultOpen = false }) {
 }
 
 const BrewzoFooter = () => {
-  const audioRef = useRef(null);
-  const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(false);
-
   const fallbackGram =
     "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='110' height='110' viewBox='0 0 110 110'%3E%3Crect width='110' height='110' fill='%23d8b08f'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='11' fill='%23503326'%3EBrewzo Feed%3C/text%3E%3C/svg%3E";
 
@@ -95,50 +57,6 @@ const BrewzoFooter = () => {
     src,
     alt: `Instagram feed ${index + 1}`,
   }));
-
-  const currentTrack = useMemo(
-    () => playlistTracks[currentTrackIndex],
-    [currentTrackIndex]
-  );
-
-  useEffect(() => {
-    const audio = audioRef.current;
-
-    if (!audio) {
-      return;
-    }
-
-    if (isPlaying) {
-      audio.play().catch(() => {
-        setIsPlaying(false);
-      });
-      return;
-    }
-
-    audio.pause();
-  }, [currentTrackIndex, isPlaying]);
-
-  const handleTrackSelect = (index) => {
-    if (index === currentTrackIndex) {
-      setIsPlaying((prev) => !prev);
-      return;
-    }
-
-    setCurrentTrackIndex(index);
-    setIsPlaying(true);
-  };
-
-  const handlePreviousTrack = () => {
-    setCurrentTrackIndex((prev) =>
-      prev === 0 ? playlistTracks.length - 1 : prev - 1
-    );
-    setIsPlaying(true);
-  };
-
-  const handleNextTrack = () => {
-    setCurrentTrackIndex((prev) => (prev + 1) % playlistTracks.length);
-    setIsPlaying(true);
-  };
 
   return (
     <footer className="custom-footer-container">
@@ -193,105 +111,16 @@ const BrewzoFooter = () => {
             </div>
 
             <div className="spotify-col">
-              <div className="playlist-card">
-                <div className="playlist-top">
-                  <div className="playlist-cover-grid">
-                    <span className="cover cover-one">
-                      <img
-                        src="https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?q=80&w=300&auto=format&fit=crop"
-                        alt=""
-                      />
-                    </span>
-                    <span className="cover cover-two">
-                      <img
-                        src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=300&auto=format&fit=crop"
-                        alt=""
-                      />
-                    </span>
-                    <span className="cover cover-three">
-                      <img
-                        src="https://images.unsplash.com/photo-1493225255756-d9584f8606e9?q=80&w=300&auto=format&fit=crop"
-                        alt=""
-                      />
-                    </span>
-                    <span className="cover cover-four">
-                      <img
-                        src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?q=80&w=400"
-                        alt=""
-                      />
-                    </span>
-                  </div>
-
-                  <div className="playlist-main">
-                    <div className="playlist-meta">
-                      <h3>FW 2025</h3>
-                      <p>Brewzo India</p>
-                    </div>
-                    <div className="playlist-save">
-                      <IoAddCircleOutline />
-                      <span>Save on Spotify</span>
-                    </div>
-                  </div>
-
-                  <div className="playlist-spotify">
-                    <FaSpotify />
-                  </div>
-                </div>
-
-                <div className="playlist-controls-row">
-                  <span className="preview-pill">Preview</span>
-                  <div className="playlist-controls">
-                    <button
-                      type="button"
-                      className="playlist-icon-button"
-                      onClick={handlePreviousTrack}
-                      aria-label="Previous track"
-                    >
-                      <FaStepBackward />
-                    </button>
-                    <button
-                      type="button"
-                      className="playlist-icon-button"
-                      onClick={handleNextTrack}
-                      aria-label="Next track"
-                    >
-                      <FaStepForward />
-                    </button>
-                    <div className="playlist-dots">
-                      <FaEllipsisH />
-                    </div>
-                    <button
-                      type="button"
-                      className="play-button"
-                      onClick={() => setIsPlaying((prev) => !prev)}
-                      aria-label={isPlaying ? 'Pause playlist' : 'Play playlist'}
-                    >
-                      {isPlaying ? <FaPause /> : <FaPlay />}
-                    </button>
-                  </div>
-                </div>
-
-                <div className="playlist-tracklist">
-                  {playlistTracks.map((track, index) => (
-                    <button
-                      key={track.id}
-                      type="button"
-                      className={`track-row${index === currentTrackIndex ? ' track-row-active' : ''}`}
-                      onClick={() => handleTrackSelect(index)}
-                    >
-                      <span className="track-number">{track.id}</span>
-                      <div className="track-copy">
-                        <p>{track.title}</p>
-                        <div className="track-artist-row">
-                          {track.explicit ? (
-                            <span className="explicit-pill">E</span>
-                          ) : null}
-                          <span>{track.artist}</span>
-                        </div>
-                      </div>
-                      <span className="track-duration">{track.duration}</span>
-                    </button>
-                  ))}
+              <div className="playlist-card playlist-card--embed">
+                <div className="spotify-embed-card">
+                  <iframe
+                    title="Brewzo Spotify playlist"
+                    src="https://open.spotify.com/embed/playlist/2supAoPJgyanj1EDv7VV6E?utm_source=generator&theme=0"
+                    width="100%"
+                    height="328"
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                    loading="lazy"
+                  />
                 </div>
               </div>
             </div>
@@ -336,15 +165,6 @@ const BrewzoFooter = () => {
           />
         </div>
       </div>
-
-      <audio
-        ref={audioRef}
-        src={currentTrack.audioSrc}
-        preload="none"
-        onEnded={handleNextTrack}
-        onPause={() => setIsPlaying(false)}
-        onPlay={() => setIsPlaying(true)}
-      />
 
       <div className="footer-bottom-bar">
         <span>Â© 2026 BREWZO INDIA</span>

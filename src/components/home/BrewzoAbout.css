@@ -13,13 +13,14 @@
 }
 
 .brewzo-about__text {
-  width: min(100%, 960px);
+  width: min(100%, 1060px);
   margin: 0;
   color: var(--brewzo-coffee);
-  font-family: var(--brewzo-heading-font);
+  font-family:  'Little Amps Regular';
   font-size: 41px;
-  font-weight: 600;
-  line-height: 1.01;
+  font-weight: 500;
+  line-height: 0.94;
+  letter-spacing: -0.01em;
 }
 
 .brewzo-about__highlight {
