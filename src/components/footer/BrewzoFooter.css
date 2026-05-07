@@ -241,7 +241,6 @@
 .spotify-embed-card {
   width: min(390px, 100%);
   max-width: 100%;
-  padding: 14px;
   border-radius: 12px;
   overflow: hidden;
 }

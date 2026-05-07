@@ -31,20 +31,19 @@
 .logo {
   position: absolute;
   top: 30px;
-  left: 30px;
+  left: 12%;
+  transform: translateX(-50%);
   z-index: 1;
-  max-width: calc(100% - 60px);
 }
 
 .logo__title {
   margin: 0;
-  color: #f5e6d3;
+  color: #65392d;
   font-family: 'Little Amps Regular', serif;
-  font-size: clamp(2.8rem, 6.2vw, 5.1rem);
+  font-size: 5.1rem;
   font-weight: 500;
   line-height: 0.9;
   letter-spacing: -2.5px;
-  white-space: nowrap;
 }
 
 .brewzo-hero__content {
