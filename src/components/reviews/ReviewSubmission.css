@@ -211,9 +211,14 @@
   .brewzo-review-page {
     padding: 16px 10px;
   }
+  .brewzo-review-page__shell {
+    flex-direction: column;
+    gap: 55px;
+  }
 
   .brewzo-review-page__form-panel {
     padding: 18px 14px 22px;
+    margin-bottom: 2rem;
   }
 
   .brewzo-review-page__title {

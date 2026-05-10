@@ -8,6 +8,11 @@ import {
 import { SiSwiggy, SiZomato } from 'react-icons/si';
 import LogoLoop from './LogoLoop';
 
+const brewzoFeedModules = import.meta.glob('../../assets/brewzo feed/*.{jpg,mp4}', {
+  eager: true,
+  import: 'default',
+});
+
 const companyLinks = [
   { to: '/#about', label: 'About' },
   { to: '/#review', label: 'Reviews' },
@@ -41,22 +46,13 @@ function FooterDropdown({ title, links, defaultOpen = false }) {
 const BrewzoFooter = () => {
   const fallbackGram =
     "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='110' height='110' viewBox='0 0 110 110'%3E%3Crect width='110' height='110' fill='%23d8b08f'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='11' fill='%23503326'%3EBrewzo Feed%3C/text%3E%3C/svg%3E";
-
-  const rollingImages = [
-    '/images/gram1.jpg',
-    '/images/gram2.jpg',
-    '/images/gram3.jpg',
-    '/images/gram4.jpg',
-    '/images/gram5.jpg',
-    '/images/gram6.jpg',
-    '/images/gram7.jpg',
-    '/images/gram8.jpg',
-  ];
-
-  const gramLogos = rollingImages.map((src, index) => ({
-    src,
-    alt: `Instagram feed ${index + 1}`,
-  }));
+  const brewzoFeedItems = Object.entries(brewzoFeedModules)
+    .sort(([pathA], [pathB]) => pathA.localeCompare(pathB))
+    .map(([path, src], index) => ({
+      src,
+      alt: `Brewzo feed ${index + 1}`,
+      type: path.toLowerCase().endsWith('.mp4') ? 'video' : 'image',
+    }));
 
   return (
     <footer className="custom-footer-container">
@@ -141,7 +137,7 @@ const BrewzoFooter = () => {
 
         <div className="marquee-container">
           <LogoLoop
-            logos={gramLogos}
+            logos={brewzoFeedItems}
             speed={15}
             direction="left"
             logoHeight={110}
@@ -151,15 +147,27 @@ const BrewzoFooter = () => {
             className="footer-logo-loop"
             renderItem={(item, key) => (
               <div key={key} className="footer-logo-loop__item" aria-label={item.alt}>
-                <img
-                  src={item.src}
-                  alt={item.alt}
-                  loading="lazy"
-                  onError={(e) => {
-                    e.currentTarget.onerror = null;
-                    e.currentTarget.src = fallbackGram;
-                  }}
-                />
+                {item.type === 'video' ? (
+                  <video
+                    src={item.src}
+                    aria-label={item.alt}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    preload="metadata"
+                  />
+                ) : (
+                  <img
+                    src={item.src}
+                    alt={item.alt}
+                    loading="lazy"
+                    onError={(e) => {
+                      e.currentTarget.onerror = null;
+                      e.currentTarget.src = fallbackGram;
+                    }}
+                  />
+                )}
               </div>
             )}
           />

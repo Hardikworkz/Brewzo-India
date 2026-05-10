@@ -37,7 +37,7 @@
   position: relative;
   z-index: 1;
   width: min(100%, 1280px);
-  margin: 0 40px;
+  margin: 0 30px;
 }
 
 .brewzo-beans__label {
@@ -176,6 +176,7 @@
   background-color: #c44d24;
   color: white;
   border: none;
+  text-decoration: none;
  
   padding: 4px 8px;
   font-family: 'Inclusive Sans', sans-serif;
@@ -192,7 +193,7 @@
 @media (max-width: 640px) {
   .brewzo-beans {
     min-height: auto;
-    padding: 30px 18px 34px;
+    padding: 30px 18px 34px 0px;
   }
 
   .brewzo-beans__heading {
@@ -204,9 +205,10 @@
   }
 
   .brewzo-beans__card {
-    width: 345px;
-    min-height: 505px;
-    padding: 35px;
+    flex-basis: min(345px, calc(100vw - 28px));
+    width: auto;
+    min-height: 0;
+    padding: 20px;
   }
 }
 
@@ -245,13 +247,19 @@
     flex: 0 0 345px;
     width: 345px;
     min-height: 505px;
-    padding: 35px;
+    padding: 36px;
   }
 }
 
 @media (max-width: 480px) {
   .brewzo-beans__card {
-    width: 345px;
-    padding: 35px;
+    flex-basis: min(345px, calc(100vw - 20px));
+    width: auto;
+    padding: 16px;
+  }
+
+  .brewzo-beans__card-image-wrapper,
+  .brewzo-beans__card-content {
+    max-width: 100%;
   }
 }
