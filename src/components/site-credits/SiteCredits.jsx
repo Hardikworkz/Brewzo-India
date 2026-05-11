@@ -9,7 +9,7 @@ export default function SiteCredits() {
           <h1 className="site-credits-page__title">Site Credits</h1>
 
           <div className="site-credits-page__group">
-            <p className="site-credits-page__label">Web Design &amp; Development(Inspired)</p>
+            <p className="site-credits-page__label">Web Design &amp; Development</p>
             <a
               className="site-credits-page__name"
               href="mailto:workzhardik@gmail.com"

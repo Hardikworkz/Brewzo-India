@@ -11,6 +11,7 @@ import LogoLoop from './LogoLoop';
 const brewzoFeedModules = import.meta.glob('../../assets/brewzo feed/*.{jpg,mp4}', {
   eager: true,
   import: 'default',
+  
 });
 
 const companyLinks = [
@@ -46,13 +47,29 @@ function FooterDropdown({ title, links, defaultOpen = false }) {
 const BrewzoFooter = () => {
   const fallbackGram =
     "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='110' height='110' viewBox='0 0 110 110'%3E%3Crect width='110' height='110' fill='%23d8b08f'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='11' fill='%23503326'%3EBrewzo Feed%3C/text%3E%3C/svg%3E";
-  const brewzoFeedItems = Object.entries(brewzoFeedModules)
+  const sortedFeedEntries = Object.entries(brewzoFeedModules)
     .sort(([pathA], [pathB]) => pathA.localeCompare(pathB))
-    .map(([path, src], index) => ({
+    .map(([path, src]) => ({
       src,
-      alt: `Brewzo feed ${index + 1}`,
       type: path.toLowerCase().endsWith('.mp4') ? 'video' : 'image',
     }));
+
+  const imageItems = sortedFeedEntries.filter((item) => item.type === 'image');
+  const videoItems = sortedFeedEntries.filter((item) => item.type === 'video');
+  const brewzoFeedItems = [];
+
+  imageItems.forEach((item, index) => {
+    brewzoFeedItems.push(item);
+
+    if ((index + 1) % 2 === 0 && videoItems.length > 0) {
+      brewzoFeedItems.push(videoItems.shift());
+    }
+  });
+
+  brewzoFeedItems.push(...videoItems);
+  brewzoFeedItems.forEach((item, index) => {
+    item.alt = `Brewzo feed ${index + 1}`;
+  });
 
   return (
     <footer className="custom-footer-container">
@@ -69,7 +86,7 @@ const BrewzoFooter = () => {
               <div className="contact-details">
                  
                 <div className="address-block">
-                  <a className="visit-badge" href="https://maps.app.goo.gl/5MdMZMt6Arm5ubA66" target="_blank" rel="noopener noreferrer" style={{textDecoration: 'none'}}>
+                  <a className="visit-badge" href="https://www.google.com/maps/place/Brewzo+Cafe/@23.2149502,77.4303075,17z/data=!3m1!4b1!4m6!3m5!1s0x397c433251ebff51:0x43b0a7672908d556!8m2!3d23.2149502!4d77.4328824!16s%2Fg%2F11y464df2z?entry=ttu&g_ep=EgoyMDI2MDUwNi4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" style={{textDecoration: 'none'}}>
                 VISIT US
               </a>
                   <p>E-4/68, arera colony, Bhopal, Madhya Pradesh</p>
