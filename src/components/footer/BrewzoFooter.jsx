@@ -75,7 +75,9 @@ const BrewzoFooter = () => {
                   <p>E-4/68, arera colony, Bhopal, Madhya Pradesh</p>
                 </div>
                 <div className="social-block">
-                  <p className="email-link">Pooja@brewzoindia.com</p>
+                  <a href="mailto:Hello.brewzo@gmail.com" style={{cursor: 'pointer', textDecoration:'none' , color: 'inherit'}} className="email-link">
+                    Hello.brewzo@gmail.com
+                  </a>
                   <div className="social-icons">
                     <a href="https://www.facebook.com/people/Brewzo-cafe/61561075171099/">
                       <FaFacebook />
