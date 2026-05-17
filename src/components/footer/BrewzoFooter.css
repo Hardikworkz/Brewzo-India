@@ -493,6 +493,7 @@
 
 .marquee-container {
   flex: 1;
+  border: none;
   margin-left: 240px;
   min-width: 0;
   overflow: hidden;
@@ -701,10 +702,10 @@
   }
 
   .footer-marquee-section {
-    min-height: 108px;
+    min-height: 100px;
     align-items: stretch;
+    padding: 14px 0 0;
     
-    padding: 10px 0 12px;
   }
 
   .doodle-area {
@@ -726,7 +727,6 @@
 
   .footer-bottom-bar {
     height: auto;
-    
     align-items: flex-start;
     gap: 6px;
     padding: 10px 14px;
