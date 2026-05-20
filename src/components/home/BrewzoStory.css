@@ -22,6 +22,7 @@
 .brewzo-story__panel {
   flex: 1 1 0;
   min-width: 0;
+  box-sizing: border-box;
 }
 
 .brewzo-story__image-panel {
@@ -79,19 +80,8 @@
 }
 
 @media (max-width: 820px) {
-  .brewzo-story {
-    height: auto;
-  }
-
   .brewzo-story__content {
     flex-direction: column;
-    min-height: auto;
-    height: auto;
-  }
-
-   
-  .brewzo-story__image-panel {
-    min-height: 280px;
   }
 
   .story-doodle img{
@@ -107,9 +97,7 @@
     margin-bottom: 16px;
   }
 
-  .brewzo-story__image-panel {
-    min-height: 220px;
-  }
+
 
    .story-doodle img{
     position: relative;
@@ -124,9 +112,7 @@
     margin-bottom: 16px;
   }
 
-  .brewzo-story__image-panel {
-    min-height: 220px;
-  }
+
    .story-doodle img{
     position: relative;
     bottom: 40px;

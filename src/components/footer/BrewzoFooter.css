@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
+
+@font-face {
+  font-family: main;
+  src: url('../../assets/brewzoo/fonts/LittleAmpsSerifRegular.woff2') format('woff2');
+}
+
 .custom-footer-container {
   width: 100%;
   min-height: 0;
@@ -9,6 +15,7 @@
   color: #4a2e1b;
   box-sizing: border-box;
 }
+
 
 .footer-top-wrapper {
   width: 100%;
@@ -42,6 +49,7 @@
 .brand-placeholder {
   display: inline-flex;
   align-items: flex-end;
+  font-family: main;
   gap: 16px;
   max-width: 430px;
 }

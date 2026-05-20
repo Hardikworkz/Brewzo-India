@@ -1,3 +1,8 @@
+@font-face {
+  font-family: main;
+  src: url('../../assets/brewzoo/fonts/LittleAmpsSerifRegular.woff2') format('woff2');
+}
+
 .brewzo-reviews {
   position: relative;
    padding: 76px clamp(18px, 4vw, 56px) 64px;
@@ -117,6 +122,7 @@
   justify-content: space-between;
   align-items: flex-start;
   gap: 14px;
+
   margin-bottom: 18px;
   min-height: 52px;
 }
@@ -124,9 +130,9 @@
 .brewzo-reviews__card-top h3 {
   margin: 0 0 7px;
   color: #3b1f1a;
-  font-family: 'Little Amps Regular', var(--brewzo-heading-font);
+  font-family: main;
   font-size: 22px;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 0.95;
 }
 
